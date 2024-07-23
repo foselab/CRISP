@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MF0 version="1.1" packageUris="http://schema.mathworks.com/mf0/faultinfo_datamodel/R2021a">
+  <faultinfo.FaultContainerSet type="faultinfo.FaultContainerSet" uuid="d021b793-e93f-412f-a6e2-677236e6e51e">
+    <conditionals type="faultinfo.conditional.Conditional" uuid="83c0a381-5a52-458e-a964-daa0efcd5a66">
+      <condition>x == true</condition>
+      <mustBeLogged>false</mustBeLogged>
+      <name>SampleConditional</name>
+      <resyncRefBlkID></resyncRefBlkID>
+      <resyncUUID>00000000-0000-0000-0000-000000000000</resyncUUID>
+      <symbols type="faultinfo.conditional.ExpressionSymbol" uuid="8f3daaca-4dd3-48bb-80c2-0b2888daaf7c">
+        <expression>true</expression>
+        <name>x</name>
+      </symbols>
+    </conditionals>
+    <isEnabled>false</isEnabled>
+    <lastUpdatedAt>2024-05-08T12:29:51</lastUpdatedAt>
+    <modelName>LaneFollowingTestBenchExample</modelName>
+    <modelUUID>45c0c876-65ac-4e52-b295-572e7972055c</modelUUID>
+  </faultinfo.FaultContainerSet>
+</MF0>
