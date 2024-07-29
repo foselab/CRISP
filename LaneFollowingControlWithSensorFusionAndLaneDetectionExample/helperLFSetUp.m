@@ -16,8 +16,8 @@ assignin('base','Ts',0.1);               % Simulation sample time  (s)
 %% Path following Controller Parameters
 assignin('base','time_gap',1.5);         % time gap               (s)
 assignin('base','default_spacing',20);   % default spacing        (m)
-assignin('base','max_ac',8.97);             % Maximum acceleration   (m/s^2)
-assignin('base','min_ac',-8);            % Minimum acceleration   (m/s^2)
+assignin('base','max_ac',3);             % Maximum acceleration   (m/s^2)
+assignin('base','min_ac',-3);            % Minimum acceleration   (m/s^2)
 assignin('base','max_steer',0.26);       % Maximum steering       (rad)
 assignin('base','min_steer',-0.26);      % Minimum steering       (rad) 
 assignin('base','PredictionHorizon',30); % Prediction horizon     
