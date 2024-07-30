@@ -70,7 +70,7 @@ assignin('base','yaw0_ego',-yaw0_ego);
 
 % Define set velocity
 
-v_set = 30;  % ACC set speed (m/s)
+v_set = 15;  % ACC set speed (m/s)
 
 assignin('base','v_set',v_set);
 
