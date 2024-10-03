@@ -8,5 +8,11 @@ testAssessmentPath = string(as.BlockPath.getBlock(1));
 % GETALLSTEPS ho inserito manuamente il percorso per il test assessment
 
 %% GETALLSTEPS
-stepTable = getAllSteps('Scenario_1', 'LFRefMdl/Test Assessment'); 
-[stepTableTA, fitTable] = getFit(stepTable);
+stepTable = getAllSteps('Scenario_1', 'LFRefMdl/Test Assessment');
+stepTable = sortAss(stepTable,[],[],'Scenario_1');
+[stepTable, fitTable] = getFit(stepTable);
+transTable = getAllTrans(stepTable,'LFRefMdl/Test Assessment');
+buildTransitionMap('LFRefMdl/Test Assessment', stepTable, transTable, fitTable);
+
+
+
