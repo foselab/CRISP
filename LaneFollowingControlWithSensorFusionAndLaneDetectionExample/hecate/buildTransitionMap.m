@@ -335,7 +335,7 @@ for ii = 1:length(lines_handle)
     src_port_number = get_param(src_port_handle,"PortNumber");
 
     dest_port_number = find(strcmp(inputTA,port_name_TA{ii}),1);
-    add_line(modelName,src_block_name + "/" + num2str(src_port_number),transMap_name + "/" + num2str(dest_port_number))
+    add_line(modelName,src_block_name + "/" + num2str(src_port_number),transMap_name + "/" + num2str(dest_port_number)) 
 end
 
 % Link Chart to min block
