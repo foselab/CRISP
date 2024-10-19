@@ -42,7 +42,7 @@ modelName = 'LaneFollowingTestBenchExample';
 
 % !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 % PER ORA I PARAMETRI LI HO MESSI TUTTI COME COMMENTI PERCHE' NEL MIO
-% MODELLO NON SI USANO PARAMTRI
+% MODELLO NON SI USANO PARAMETRI
 
 %inputParam(1).Name = 'Hecate_throttle';
 %inputParam(1).LowerBound = 50;
