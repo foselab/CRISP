@@ -1,4 +1,4 @@
-function helperLFSetUp(varargin)
+function helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, varargin)
 % Set up Script for the Lane Following Example
 %
 % This script initializes the lane following example model. It loads
@@ -14,13 +14,13 @@ function helperLFSetUp(varargin)
 assignin('base','Ts',0.1);               % Simulation sample time  (s)
 
 %% Path following Controller Parameters
-assignin('base','time_gap',1.5);         % time gap               (s)
-assignin('base','default_spacing',20);   % default spacing        (m)
-assignin('base','max_ac',3);             % Maximum acceleration   (m/s^2)
-assignin('base','min_ac',-3);            % Minimum acceleration   (m/s^2)
-assignin('base','max_steer',    0.26);       % Maximum steering       (rad)
-assignin('base','min_steer',-0.26);      % Minimum steering       (rad) 
-assignin('base','PredictionHorizon',30); % Prediction horizon     
+assignin('base','time_gap',1.5);                        % time gap               (s)
+assignin('base','default_spacing',20);                  % default spacing        (m)
+assignin('base','max_ac',max_acceleration);             % Maximum acceleration   (m/s^2)
+assignin('base','min_ac',min_acceleration);             % Minimum acceleration   (m/s^2)
+assignin('base','max_steer',max_steering);              % Maximum steering       (rad)
+assignin('base','min_steer',min_steering);              % Minimum steering       (rad) 
+assignin('base','PredictionHorizon',30);                % Prediction horizon     
 
 %% Create driving scenario
 % The scenario name is a MATLAB function created by the Driving Scenario Designer App. 
@@ -93,13 +93,13 @@ assignin('base','velSelector',[0,1,0,0,0,0; 0,0,0,1,0,0]); % Velocity selector  
 
 %% Ego Car Parameters
 % Dynamics modeling parameters
-assignin('base','m',1772);      % Total mass of vehicle                          (kg)
-assignin('base','Iz',2875);     % Yaw moment of inertia of vehicle               (m*N*s^2)
-assignin('base','lf',2.2);      % Longitudinal distance from c.g. to front tires (m)
-assignin('base','lr',2.6);      % Longitudinal distance from c.g. to rear tires  (m)
-assignin('base','Cf',19000);    % Cornering stiffness of front tires             (N/rad)
-assignin('base','Cr',33000);    % Cornering stiffness of rear tires              (N/rad)
-assignin('base','tau',0.5);     % time constant for longitudinal dynamics        (1/s/(tau*s+1))
+assignin('base','m',total_mass);                % Total mass of vehicle                          (kg)
+assignin('base','Iz',yaw);                      % Yaw moment of inertia of vehicle               (m*N*s^2)
+assignin('base','lf',long_distance_front);      % Longitudinal distance from c.g. to front tires (m)
+assignin('base','lr',long_distance_rear);       % Longitudinal distance from c.g. to rear tires  (m)
+assignin('base','Cf',cornering_stiff_front);    % Cornering stiffness of front tires             (N/rad)
+assignin('base','Cr',cornering_stiff_rear);     % Cornering stiffness of rear tires              (N/rad)
+assignin('base','tau',tau);                     % time constant for longitudinal dynamics        (1/s/(tau*s+1))
 
 %% Bus Creation
 % Load the Simulink model
