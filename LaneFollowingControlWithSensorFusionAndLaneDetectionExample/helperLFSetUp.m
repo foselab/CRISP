@@ -1,4 +1,4 @@
-function helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, varargin)
+function helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, scenario_name, varargin)
 % Set up Script for the Lane Following Example
 %
 % This script initializes the lane following example model. It loads
@@ -24,7 +24,24 @@ assignin('base','PredictionHorizon',30);                % Prediction horizon
 
 %% Create driving scenario
 % The scenario name is a MATLAB function created by the Driving Scenario Designer App. 
-defaultScenarioFcnName = "LFACC_04_Curve_CutInOut";
+% defaultScenarioFcnName = "LFACC_04_Curve_CutInOut";
+defaultScenarioFcnName = scenario_name;
+
+%QUESTO E' QUELLO ORIGINALE CHE HO COMMENTANTO PER NON ELIMINARLO 
+% validScenarioFcnNames = {
+%     'ACC_01_ISO_TargetDiscriminationTest',...          % scenarioId = 1
+%     'ACC_02_ISO_AutoRetargetTest',...                  % scenarioId = 2
+%     'ACC_03_ISO_CurveTest',...                         % scenarioId = 3
+%     'ACC_04_StopnGo',...                               % scenarioId = 4
+%     'LFACC_01_DoubleCurve_DecelTarget',...             % scenarioId = 5
+%     'LFACC_02_DoubleCurve_AutoRetarget',...            % scenarioId = 6
+%     'scenarioOstacoloSuStrada',...                     % scenarioId = 7
+%     'LFACC_04_Curve_CutInOut',...                      % scenarioId = 8
+%     'selvinotest',...                                  % scenarioId = 9
+%     };
+% 
+% scenarioStopTimes = [19.82 17.99 21.99 25.88 26.93 39.51 60.20 22.80 60.20];
+
 validScenarioFcnNames = {
     'ACC_01_ISO_TargetDiscriminationTest',...          % scenarioId = 1
     'ACC_02_ISO_AutoRetargetTest',...                  % scenarioId = 2
