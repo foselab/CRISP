@@ -8,11 +8,12 @@
 
 %% GETALLSTEPS
 AssessmentScenario = "Scenario_1";
-assessmentPath = "LFRefMdl/Test Assessment";
+assessmentPath = 'LFRefMdl/Test Assessment';
 stepTableTA = getAllSteps(AssessmentScenario, assessmentPath);
 stepTableTA = sortAss(stepTableTA,[],[], AssessmentScenario);
 [stepTableTA, fitTable] = getFit(stepTableTA);
 transTable = getAllTrans(stepTableTA,assessmentPath);
+assessmentPath = "LFRefMdl/Test Assessment";
 buildTransitionMap(assessmentPath, stepTableTA, transTable, fitTable);
 
 

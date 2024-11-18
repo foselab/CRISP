@@ -31,39 +31,61 @@ lenght_scenarios_array = length(Scenario_Array_validi);          %lunghezza arra
 %% creazione array di celle vuoto, configurato per contenere i valori di ogni configurazione
 rows = lenght_scenarios_array * lenght_vehicles_array;
 sz = [rows 3];
-varTypes = ["String", "String", "Double"];
+varTypes = ["string", "string", "double"];
 varNames = ["Scenario", "Vehicle", "Fitness_Hecate"];
 
 Results_Table = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
-%% funzione ciclica che va a runnare tutte le possibili configurazioni
+% %% funzione ciclica che va a runnare tutte le possibili configurazioni
+% 
+% row_counter = 1;
+% 
+% 
+% for i = 1 : lenght_vehicles_array
+% 
+%     %configurazioni parametri veicolo
+%     run(Vehicles_Parameters{i});
+% 
+%     for j = 1 : lenght_scenarios_array       
+% 
+%         %configurazione simulazione
+%         fprintf('CONFIGURAZIONE SIMULAZIONE\n');
+%         helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_Array_validi{j});
+%         fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
+% 
+%         %configurazione fitness function hecate
+%         fprintf('CONFIGURAZIONE HECATE\n'); 
+%         run("hecate\testComandi.m");                        
+%         fprintf('HECATE CORRETTAMENTE CONFIGURATO\n');
+% 
+%         %run simulazione
+%         fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_Array_validi{i}, Vehicles_Parameters{i});
+%         sim(modelname_simulation);
+%         fprintf('SIMULAZIONE CONCLUSA \n');
+% 
+%         %salvataggio dati simulazione
+%         % fprintf('SALVATAGGIO DATI\n');
+%         % Actual_Scenario_Name = Scenario_Array_validi{j};
+%         % Actual_Vehicle_Name = Vehicles_Parameters{i};
+%         % Results_Table(row_counter,:)={Actual_Scenario_Name, Actual_Vehicle_Name,};   %CONTINUA DA QUI, DEVI SALVARTI IL NUMERO DELLA FITNESS
+%         % row_counter = row_counter+1;
+%     end
+% 
+% end
 
-row_counter = 1;
 
+%% NEL CASO VOLESSI TESTARE UNA SINGOLA CONFIGURAZIONE, COMMENTARE IL PARAGRAFO PRECEDENTE ED ESEGUIRE QUESTO 
+%  INSERENDO IL NOME DELLO SCENARIO E DELL'AUTOMOBILE DESIDERATA
 
-for i = 1 : lenght_vehicles_array
+fprintf('STARTING SIMULATION\n');
+VEHICLE_NAME = 'Camaro.m'; 
+SCENARIO_NAME = 'LFACC_04_Curve_CutInOut';
+run(VEHICLE_NAME);
+fprintf('CONFIGURAZIONE HECATE\n');
+run("hecate\testComandi.m");
+fprintf('HECATE CONFIGURATO CORRETTAMENTE\n');
+helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, SCENARIO_NAME);
+sim(modelname_simulation);  
 
-    %configurazioni parametri veicolo
-    run(Vehicles_Parameters{i});
+fprintf('SIMULAZIONE CONCLUSA\n');
 
-    for j = 1 : lenght_scenarios_array       
-
-        %configurazione fitness function hecate
-        fprintf('Run comandi hecate\n'); 
-        run("hecate\testComandi.m");                        
-        fprintf('Hecate correttamente configurato');
-
-        %run simulazione
-        fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_Array_validi{i}, Vehicles_Parameters{i});
-        helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_Array_validi{j});
-        sim(modelname_simulation);
-        fprintf('SIMULAZIONE CONCLUSA \n');
-
-        %salvataggio dati simulazione
-        fprintf('SALVATAGGIO DATI\n');
-        Actual_Name_Scenario = Scenario_Array_validi{j};
-        Actual_Vehicle_Name = Vehicles_Parameters{i};
-        Results_Table(row_counter,:)={Actual_Name_Scenario, Actual_Vehicle_Name,};   %CONTINUA DA QUI, DEVI SALVARTI IL NUMERO DELLA FITNESS
-    end
-    
-end
