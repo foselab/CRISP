@@ -4,7 +4,7 @@
 
 modelname_simulation = 'LaneFollowingTestBenchExample';
 
-%% elenco automobili disponibili (organizzato in un vettore di celle) 
+%% ELENCO AUTOMOBILI DISPONIBILI (organizzato in un vettore di celle) 
 % IMPORTANTE!! ogni volta che si crea un nuovo veicolo bisogna inserire il
 % nome del file all'interno di questo array
 
@@ -16,7 +16,7 @@ Vehicles_Parameters = {
 
 lenght_vehicles_array = length(Vehicles_Parameters);             %lunghezza array veicoli
 
-%% elenco possibili scenari (organizzato in un vettore di celle)
+%% ELENCO POSSIBILI SCENARI (organizzato in un vettore di celle)
  % Scenario_Array_validi = {
  %    'scenarioOstacoloSuStrada',...                     % scenarioId = 7
  %    'LFACC_04_Curve_CutInOut',...                      % scenarioId = 8
@@ -28,7 +28,7 @@ lenght_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
     };
 lenght_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi
 
-%% creazione array di celle vuoto, configurato per contenere i valori di ogni configurazione
+%% CREAZIONE TABELLA VUOTA, CONFIGURATA PER CONTENERE I VALORI DI OGNI CONFIGURAZIONE
 rows = lenght_scenarios_array * lenght_vehicles_array;
 sz = [rows 3];
 varTypes = ["string", "string", "double"];
@@ -75,7 +75,7 @@ Results_Table = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varN
 
 
 %% NEL CASO VOLESSI TESTARE UNA SINGOLA CONFIGURAZIONE, COMMENTARE IL PARAGRAFO PRECEDENTE ED ESEGUIRE QUESTO 
-%  INSERENDO IL NOME DELLO SCENARIO E DELL'AUTOMOBILE DESIDERATA
+%  INSERENDO IL NOME DELLO SCENARIO E DEL VEICOLO DESIDERATO
 
 fprintf('STARTING SIMULATION\n');
 VEHICLE_NAME = 'Camaro.m'; 
@@ -85,7 +85,11 @@ fprintf('CONFIGURAZIONE HECATE\n');
 run("hecate\testComandi.m");
 fprintf('HECATE CONFIGURATO CORRETTAMENTE\n');
 helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, SCENARIO_NAME);
-sim(modelname_simulation);  
+simOut = sim(modelname_simulation);  
+%  QUESTO è IL COMANDO CHE TI SERVE PER REGISTRARE I VALORI IN USCITA,
+%  CAPISCI MEGLIO COME FUNZIONA, TEORIACAMENTE TUTTI QUELI INPUNT NON TI
+%  SERVONO, TI SERVE SOLO IL NOME DEL MODELLO.
+%[T, XT, YT] = sim(inputModel, [0 staliro_SimulationTime], simopt, [steptime, InpSignal]); 
 
 fprintf('SIMULAZIONE CONCLUSA\n');
 
