@@ -37,59 +37,61 @@ varNames = ["Scenario", "Vehicle", "Fitness_Hecate"];
 Results_Table = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
 % %% funzione ciclica che va a runnare tutte le possibili configurazioni
-% 
-% row_counter = 1;
-% 
-% 
-% for i = 1 : lenght_vehicles_array
-% 
-%     %configurazioni parametri veicolo
-%     run(Vehicles_Parameters{i});
-% 
-%     for j = 1 : lenght_scenarios_array       
-% 
-%         %configurazione simulazione
-%         fprintf('CONFIGURAZIONE SIMULAZIONE\n');
-%         helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_Array_validi{j});
-%         fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
-% 
-%         %configurazione fitness function hecate
-%         fprintf('CONFIGURAZIONE HECATE\n'); 
-%         run("hecate\testComandi.m");                        
-%         fprintf('HECATE CORRETTAMENTE CONFIGURATO\n');
-% 
-%         %run simulazione
-%         fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_Array_validi{i}, Vehicles_Parameters{i});
-%         sim(modelname_simulation);
-%         fprintf('SIMULAZIONE CONCLUSA \n');
-% 
-%         %salvataggio dati simulazione
-%         % fprintf('SALVATAGGIO DATI\n');
-%         % Actual_Scenario_Name = Scenario_Array_validi{j};
-%         % Actual_Vehicle_Name = Vehicles_Parameters{i};
-%         % Results_Table(row_counter,:)={Actual_Scenario_Name, Actual_Vehicle_Name,};   %CONTINUA DA QUI, DEVI SALVARTI IL NUMERO DELLA FITNESS
-%         % row_counter = row_counter+1;
-%     end
-% 
-% end
+
+row_counter = 1;
+
+
+for i = 1 : lenght_vehicles_array
+
+    %configurazioni parametri veicolo
+    run(Vehicles_Parameters{i});
+
+    for j = 1 : lenght_scenarios_array       
+
+        %configurazione simulazione
+        fprintf('CONFIGURAZIONE SIMULAZIONE\n');
+        helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_Array_validi{j});
+        fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
+
+        %configurazione fitness function hecate
+        fprintf('CONFIGURAZIONE HECATE\n'); 
+        run("hecate\testComandi.m");                        
+        fprintf('HECATE CORRETTAMENTE CONFIGURATO\n');
+
+        %run simulazione
+        fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_Array_validi{i}, Vehicles_Parameters{i});
+        [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
+        fprintf('SIMULAZIONE CONCLUSA \n');
+
+        %salvataggio dati simulazione
+        fprintf('SALVATAGGIO DATI\n');
+        Actual_Scenario_Name = Scenario_Array_validi{j};
+        Actual_Vehicle_Name = Vehicles_Parameters{i};
+        fit_values = Out.logsout{6}.Values.Data;
+        fitness_simulation = fit_values(end);
+        Results_Table(row_counter,:)={Actual_Scenario_Name, Actual_Vehicle_Name, fitness_simulation};   
+        row_counter = row_counter+1;
+    end
+
+end
 
 
 %% NEL CASO VOLESSI TESTARE UNA SINGOLA CONFIGURAZIONE, COMMENTARE IL PARAGRAFO PRECEDENTE ED ESEGUIRE QUESTO 
 %  INSERENDO IL NOME DELLO SCENARIO E DEL VEICOLO DESIDERATO
 
-fprintf('STARTING SIMULATION\n');
-VEHICLE_NAME = 'Camaro.m'; 
-SCENARIO_NAME = 'LFACC_04_Curve_CutInOut';
-run(VEHICLE_NAME);
-fprintf('CONFIGURAZIONE HECATE\n');
-run("hecate\testComandi.m");
-fprintf('HECATE CONFIGURATO CORRETTAMENTE\n');
-helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, SCENARIO_NAME);
-simOut = sim(modelname_simulation);  
-%  QUESTO è IL COMANDO CHE TI SERVE PER REGISTRARE I VALORI IN USCITA,
-%  CAPISCI MEGLIO COME FUNZIONA, TEORIACAMENTE TUTTI QUELI INPUNT NON TI
-%  SERVONO, TI SERVE SOLO IL NOME DEL MODELLO.
-%[T, XT, YT] = sim(inputModel, [0 staliro_SimulationTime], simopt, [steptime, InpSignal]); 
-
-fprintf('SIMULAZIONE CONCLUSA\n');
+% fprintf('STARTING SIMULATION\n');
+% VEHICLE_NAME = 'Camaro.m'; 
+% SCENARIO_NAME = 'LFACC_04_Curve_CutInOut';
+% run(VEHICLE_NAME);
+% fprintf('CONFIGURAZIONE HECATE\n');
+% run("hecate\testComandi.m");
+% fprintf('HECATE CONFIGURATO CORRETTAMENTE\n');
+% helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, SCENARIO_NAME);
+% 
+% 
+% [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
+% fit_values = Out.logsout{6}.Values.Data;
+% fitness_simulation = fit_values(end);
+% 
+% fprintf('SIMULAZIONE CONCLUSA\n');
 
