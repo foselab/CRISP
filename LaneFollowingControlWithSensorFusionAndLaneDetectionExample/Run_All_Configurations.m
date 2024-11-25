@@ -59,7 +59,7 @@ for i = 1 : lenght_vehicles_array
         fprintf('HECATE CORRETTAMENTE CONFIGURATO\n');
 
         %run simulazione
-        fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_Array_validi{i}, Vehicles_Parameters{i});
+        fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_Array_validi{j}, Vehicles_Parameters{i});
         [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
         fprintf('SIMULAZIONE CONCLUSA \n');
 
