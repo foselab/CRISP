@@ -48,13 +48,13 @@ validScenarioFcnNames = {
     'ACC_03_ISO_CurveTest',...                         % scenarioId = 3
     'ACC_04_StopnGo',...                               % scenarioId = 4
     'LFACC_01_DoubleCurve_DecelTarget',...             % scenarioId = 5
-    'LFACC_02_DoubleCurve_AutoRetarget',...            % scenarioId = 6
+    'curvaLunga',...                                   % scenarioId = 6
     'scenarioOstacoloSuStrada',...                     % scenarioId = 7
     'LFACC_04_Curve_CutInOut',...                      % scenarioId = 8
     'selvinotest',...                                  % scenarioId = 9
     };
 
-scenarioStopTimes = [19.82 17.99 21.99 25.88 26.93 39.51 60.20 22.80 60.20];
+scenarioStopTimes = [19.82 17.99 21.99 25.88 26.93 60.20 60.20 22.80 60.20];
 
 % Parse input
 checkScenarioFncName = @(x) any(strcmp(x,validScenarioFcnNames));
@@ -62,7 +62,7 @@ p = inputParser;
 addOptional(p,'ScenarioFcnName',defaultScenarioFcnName,checkScenarioFncName);
 parse(p,varargin{:});
 scenarioFcnName = p.Results.ScenarioFcnName;
-scenarioId = 7;
+scenarioId = 6;
 
 %% Scenario parameters
 % Set random seed to ensure reproducibility.
@@ -87,7 +87,7 @@ assignin('base','yaw0_ego',-yaw0_ego);
 
 % Define set velocity
 
-v_set = 15;  % ACC set speed (m/s)
+v_set = 25;  % ACC set speed (m/s)
 
 assignin('base','v_set',v_set);
 
