@@ -49,12 +49,12 @@ validScenarioFcnNames = {
     'ACC_04_StopnGo',...                               % scenarioId = 4
     'LFACC_01_DoubleCurve_DecelTarget',...             % scenarioId = 5
     'curvaLunga',...                                   % scenarioId = 6
-    'scenarioOstacoloSuStrada',...                     % scenarioId = 7
+    'LFACC_02_DoubleCurve_AutoRetarget',...            % scenarioId = 7
     'LFACC_04_Curve_CutInOut',...                      % scenarioId = 8
     'selvinotest',...                                  % scenarioId = 9
     };
 
-scenarioStopTimes = [19.82 17.99 21.99 25.88 26.93 60.20 60.20 22.80 60.20];
+scenarioStopTimes = [19.82 17.99 21.99 25.88 26.93 39.51 60.20 22.80 60.20];
 
 % Parse input
 checkScenarioFncName = @(x) any(strcmp(x,validScenarioFcnNames));
