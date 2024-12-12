@@ -1,4 +1,4 @@
-function helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, scenario_name, varargin)
+function helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, scenario_name, id_scenario, varargin)
 % Set up Script for the Lane Following Example
 %
 % This script initializes the lane following example model. It loads
@@ -43,18 +43,11 @@ defaultScenarioFcnName = scenario_name;
 % scenarioStopTimes = [19.82 17.99 21.99 25.88 26.93 39.51 60.20 22.80 60.20];
 
 validScenarioFcnNames = {
-    'ACC_01_ISO_TargetDiscriminationTest',...          % scenarioId = 1
-    'ACC_02_ISO_AutoRetargetTest',...                  % scenarioId = 2
-    'ACC_03_ISO_CurveTest',...                         % scenarioId = 3
-    'ACC_04_StopnGo',...                               % scenarioId = 4
-    'LFACC_01_DoubleCurve_DecelTarget',...             % scenarioId = 5
-    'curvaLunga',...                                   % scenarioId = 6
-    'LFACC_02_DoubleCurve_AutoRetarget',...            % scenarioId = 7
-    'LFACC_04_Curve_CutInOut',...                      % scenarioId = 8
-    'selvinotest',...                                  % scenarioId = 9
+    'curvaLunga',...                                   % scenarioId = 1
+    'LFACC_04_Curve_CutInOut',...                      % scenarioId = 2
     };
 
-scenarioStopTimes = [19.82 17.99 21.99 25.88 26.93 39.51 60.20 22.80 60.20];
+scenarioStopTimes = [50.00 60.20];
 
 % Parse input
 checkScenarioFncName = @(x) any(strcmp(x,validScenarioFcnNames));
@@ -62,7 +55,7 @@ p = inputParser;
 addOptional(p,'ScenarioFcnName',defaultScenarioFcnName,checkScenarioFncName);
 parse(p,varargin{:});
 scenarioFcnName = p.Results.ScenarioFcnName;
-scenarioId = 6;
+scenarioId = id_scenario;
 
 %% Scenario parameters
 % Set random seed to ensure reproducibility.
