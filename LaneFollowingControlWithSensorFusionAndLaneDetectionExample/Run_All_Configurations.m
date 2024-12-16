@@ -19,9 +19,10 @@ lenght_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
 %% ELENCO POSSIBILI SCENARI (organizzato in un vettore di celle)
 
   Scenario_Array_validi = {
-    'curvaLunga',...                                     % scenarioId = 1
-    'LFACC_04_Curve_CutInOut',...                        % scenarioId = 2
-    };
+    'curvaLunga',...                                    % scenarioId = 1
+    'LFACC_04_Curve_CutInOut',...                       % scenarioId = 2
+    'LFACC_02_DoubleCurve_AutoRetarget',...             % scenarioId = 3
+        };
 
 lenght_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi
 
@@ -79,8 +80,8 @@ Results_Table = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varN
 % configurazione parametri, si inserisce il nome del file dell'automobile e il nome del file dello scenario 
 fprintf('INIZIO CONFIGURAZIONE PARAMETRI AUTO E SCENARIO\n');
 VEHICLE_NAME = 'Camaro.m'; 
-SCENARIO_NAME = 'LFACC_04_Curve_CutInOut';
-id_scenario = 2;  % ricordarsi di cambiare anche questo
+SCENARIO_NAME = 'LFACC_02_DoubleCurve_AutoRetarget';
+id_scenario = 3;  % ricordarsi di cambiare anche questo
 run(VEHICLE_NAME);
 fprintf('PARAMETRI CORRETTAMENTE CONFIGURATI\n');
 
