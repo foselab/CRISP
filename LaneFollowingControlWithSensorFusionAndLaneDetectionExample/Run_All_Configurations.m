@@ -10,7 +10,7 @@ modelname_simulation = 'LaneFollowingTestBenchExample';
 
 Vehicles_Parameters = {
     'Malibu.m',...          % VehicleId = 1
-    'HummerEV.m',...        % VehicleId = 2
+ %   'HummerEV.m',...        % VehicleId = 2
     'Camaro.m',...          % VehicleId = 3
     };
 
@@ -72,6 +72,9 @@ for i = 1 : lenght_vehicles_array
     end
 
 end
+
+% salvo i dati in un file excel 
+writetable(Results_Table, 'tabellarisultati.xlsx');
 
 
 %% NEL CASO VOLESSI TESTARE UNA SINGOLA CONFIGURAZIONE, COMMENTARE IL PARAGRAFO PRECEDENTE ED ESEGUIRE QUESTO 
