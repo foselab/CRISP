@@ -69,10 +69,6 @@ for i = 1 : lenght_vehicles_array
         fitness_simulation = fit_values(end);
         Results_Table(row_counter,:)={Actual_Scenario_Name, Actual_Vehicle_Name, fitness_simulation};   
         row_counter = row_counter+1;
-
-        fprintf('\n');
-        fprintf('-------------------------------------------------------------------\n');
-        fprintf('\n');
     end
 
 end 

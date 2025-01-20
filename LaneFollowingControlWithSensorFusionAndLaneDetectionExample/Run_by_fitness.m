@@ -95,9 +95,6 @@ for i = 1 : numero_iterazioni
     fit_values = Out.logsout{6}.Values.Data;
     fitness_simulation = fit_values(end);
     Results_Table_by_Fitness(i,:)={Scenario_file_name, Vehicle_file_name, fitness_simulation};   
-    fprintf('\n');
-    fprintf('-------------------------------------------------------------------\n');
-    fprintf('\n');
 end
 
 
