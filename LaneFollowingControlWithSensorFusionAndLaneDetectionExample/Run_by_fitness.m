@@ -29,7 +29,7 @@ modelname_simulation = 'LaneFollowingTestBenchExample';
 
 Vehicles_Parameters = {
     'Malibu.m',...          % VehicleId = 1
-    'HummerEV.m',...        % VehicleId = 2
+    %'HummerEV.m',...        % VehicleId = 2
     'Camaro.m',...          % VehicleId = 3
     };
 
@@ -51,7 +51,7 @@ sz = [rows 3];
 varTypes = ["string", "string", "double"];
 varNames = ["Scenario", "Vehicle", "Fitness_Hecate"];
 
-Results_Table_Hecate = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
+Results_Table_by_Fitness = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
 
 %% SIMULAZIONE 
@@ -94,13 +94,16 @@ for i = 1 : numero_iterazioni
     fprintf('SALVATAGGIO DATI\n');
     fit_values = Out.logsout{6}.Values.Data;
     fitness_simulation = fit_values(end);
-    Results_Table_Hecate(i,:)={Scenario_file_name, Vehicle_file_name, fitness_simulation};   
+    Results_Table_by_Fitness(i,:)={Scenario_file_name, Vehicle_file_name, fitness_simulation};   
+    fprintf('\n');
+    fprintf('-------------------------------------------------------------------\n');
+    fprintf('\n');
 end
 
 
 %% salvataggio dati in un file excel 
 
-writetable(Results_Table_Hecate, 'tabellarisultatiHecate.xlsx');
+writetable(Results_Table_by_Fitness, 'tabellarisultatiHecate.xlsx');
     
 
 
