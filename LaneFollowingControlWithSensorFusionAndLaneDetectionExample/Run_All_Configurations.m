@@ -10,8 +10,9 @@ modelname_simulation = 'LaneFollowingTestBenchExample';
 
 Vehicles_Parameters = {
     'Malibu.m',...          % VehicleId = 1
-    %'HummerEV.m',...        % VehicleId = 2
+    'Panda.m',...           % VehicleId = 2
     'Camaro.m',...          % VehicleId = 3
+    
     };
 
 lenght_vehicles_array = length(Vehicles_Parameters);             %lunghezza array veicoli

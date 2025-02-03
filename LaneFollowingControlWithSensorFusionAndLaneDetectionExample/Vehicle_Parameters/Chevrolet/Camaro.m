@@ -1,7 +1,7 @@
 %% CHEVROLET CAMARO 2024
 %% all Parameters that define the vehicle 
 total_mass = 1772;               % total mass of the vehicle                      (kg) 
-yaw = 2875;                      % Yaw moment of inertia of vehicle               (m*N*s^2)
+yaw = 3499;                      % Yaw moment of inertia of vehicle               (m*N*s^2)
 long_distance_front = 2.2;       % Longitudinal distance from c.g. to front tires (m)
 long_distance_rear = 2.6;        % Longitudinal distance from c.g. to rear tires  (m)
 cornering_stiff_front = 19000;   % Cornering stiffness of front tires             (N/rad)

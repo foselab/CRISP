@@ -11,7 +11,7 @@ function helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_ste
 %   Copyright 2018-2020 The MathWorks, Inc.
 
 %% General Model Parameters
-assignin('base','Ts',0.01);               % Simulation sample time  (s)  %ho modificato questo, prima era 0.1
+assignin('base','Ts',0.1);               % Simulation sample time  (s)  
 
 %% Path following Controller Parameters 
 assignin('base','time_gap',1.5);                        % time gap               (s)
