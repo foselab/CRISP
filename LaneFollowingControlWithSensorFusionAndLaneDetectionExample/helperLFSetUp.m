@@ -46,9 +46,11 @@ validScenarioFcnNames = {
     'curvaLunga',...                                    % scenarioId = 1
     'LFACC_04_Curve_CutInOut',...                       % scenarioId = 2
     'LFACC_02_DoubleCurve_AutoRetarget',...             % scenarioId = 3
+    'A4_Bergamo',...                                    % scenarioId = 4
     };
 
-scenarioStopTimes = [50.00 60.20 39.00];
+scenarioStopTimes = [50.00 60.20 39.00 45.00];
+scenarioVSet = [25 25 25 30];    % questo vettore rappresenta la velocità settata per ogni scenario
 
 % Parse input
 checkScenarioFncName = @(x) any(strcmp(x,validScenarioFcnNames));
@@ -81,7 +83,7 @@ assignin('base','yaw0_ego',-yaw0_ego);
 
 % Define set velocity
 
-v_set = 25;  % ACC set speed (m/s)
+v_set = scenarioVSet(scenarioId);  % ACC set speed (m/s)
 
 assignin('base','v_set',v_set);
 
