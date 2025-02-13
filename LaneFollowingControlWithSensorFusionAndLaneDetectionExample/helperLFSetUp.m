@@ -51,7 +51,7 @@ validScenarioFcnNames = {
     };
 
 scenarioStopTimes = [50.00 60.20 39.00 45.00 90.00]; % questo vettore indica i tempi di ogni simulazione 
-scenarioVSet = [25 25 25 30 14];    % questo vettore rappresenta la velocità settata per ogni scenario
+scenarioVSet = [25 25 25 30 18];    % questo vettore rappresenta la velocità settata per ogni scenario
 
 % Parse input
 checkScenarioFncName = @(x) any(strcmp(x,validScenarioFcnNames));

@@ -26,6 +26,7 @@ lenght_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
     'LFACC_04_Curve_CutInOut',...                       % scenarioId = 2
     'LFACC_02_DoubleCurve_AutoRetarget',...             % scenarioId = 3
     'A4_Bergamo',...                                    % scenarioId = 4
+    'Anaconda',...                                      % scenarioId = 5
         };
 
 lenght_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi
