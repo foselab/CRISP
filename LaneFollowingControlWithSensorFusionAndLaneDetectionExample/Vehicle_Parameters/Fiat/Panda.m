@@ -15,5 +15,5 @@ min_steering = -0.26;            % Minimum steering                             
 
 %% calcolo yaw 
 % lo yaw moment of inertia può essere calcolato come: 
-% I = massa * passo veicolo * mu (tipicamente 0.25 per una city car)
+% I = massa * passo veicolo^2 * mu (tipicamente 0.25 per una city car)
 % passo veicolo panda = 2300 mm
