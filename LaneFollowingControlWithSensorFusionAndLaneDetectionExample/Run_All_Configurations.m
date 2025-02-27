@@ -13,6 +13,7 @@ Vehicles_Parameters = {
     'Panda.m',...           % VehicleId = 2
     'Camaro.m',...          % VehicleId = 3
     'Colorado.m'...         % VehicleId = 4
+    'A4.m'...               % VehicleId = 5
     
     };
 
@@ -28,6 +29,7 @@ lenght_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
     'LFACC_02_DoubleCurve_AutoRetarget',...             % scenarioId = 3
     'A4_Bergamo',...                                    % scenarioId = 4
     'Anaconda',...                                      % scenarioId = 5
+    'ACC_01_ISO_TargetDiscriminationTest',...           % scenarioId = 6
         };
 
 lenght_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi

@@ -48,10 +48,11 @@ validScenarioFcnNames = {
     'LFACC_02_DoubleCurve_AutoRetarget',...             % scenarioId = 3
     'A4_Bergamo',...                                    % scenarioId = 4
     'Anaconda',...                                      % scenarioId = 5
+    'ACC_01_ISO_TargetDiscriminationTest',...           % scenarioId = 6
     };
 
-scenarioStopTimes = [50.00 60.20 39.00 45.00 90.00]; % questo vettore indica i tempi di ogni simulazione 
-scenarioVSet = [25 25 25 30 18];    % questo vettore rappresenta la velocità settata per ogni scenario
+scenarioStopTimes = [50.00 60.20 39.00 45.00 90.00 19.50]; % questo vettore indica i tempi di ogni simulazione 
+scenarioVSet = [25 25 25 30 18 30];    % questo vettore rappresenta la velocità settata per ogni scenario
 
 % Parse input
 checkScenarioFncName = @(x) any(strcmp(x,validScenarioFcnNames));

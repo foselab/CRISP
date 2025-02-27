@@ -2,8 +2,8 @@
 %% all Parameters that define the vehicle 
 total_mass = 2062;               % total mass of the vehicle                      (kg) 
 yaw = 7859;                      % Yaw moment of inertia of vehicle               (m*N*s^2)
-long_distance_front = 2.7;       % Longitudinal distance from c.g. to front tires (m)
-long_distance_rear = 2.7;        % Longitudinal distance from c.g. to rear tires  (m)
+long_distance_front = 1.63;       % Longitudinal distance from c.g. to front tires (m)
+long_distance_rear = 1.63;        % Longitudinal distance from c.g. to rear tires  (m)
 cornering_stiff_front = 19000;   % Cornering stiffness of front tires             (N/rad)
 cornering_stiff_rear = 33000;    % Cornering stiffness of rear tires              (N/rad)
 tau = 0.5;                       % time constant for longitudinal dynamics        (1/s/(tau*s+1))
