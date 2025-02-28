@@ -12,8 +12,10 @@ Vehicles_Parameters = {
     'Malibu.m',...          % VehicleId = 1
     'Panda.m',...           % VehicleId = 2
     'Camaro.m',...          % VehicleId = 3
-    'Colorado.m'...         % VehicleId = 4
-    'A4.m'...               % VehicleId = 5
+    'Colorado.m',...        % VehicleId = 4
+    'A4.m',...              % VehicleId = 5
+    'Polo.m',...            % VehicleId = 6
+    'Tcross',...            % VehicleId = 7
     
     };
 
