@@ -23,7 +23,7 @@ lenght_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
 
 %% ELENCO POSSIBILI SCENARI (organizzato in un vettore di celle)
 % quando si aggiunge un nuovo scenario, nel file di setup bisogna inserire
-% il tempo di simulazione
+% il tempo di simulazione e la velocità dell'ego vehicle 
 
   Scenario_Array_validi = {
     'curvaLunga',...                                    % scenarioId = 1
@@ -32,6 +32,9 @@ lenght_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
     'A4_Bergamo',...                                    % scenarioId = 4
     'Anaconda',...                                      % scenarioId = 5
     'ACC_01_ISO_TargetDiscriminationTest',...           % scenarioId = 6
+    'LFACC_01_DoubleCurve_DecelTarget',...              % scenarioId = 7
+    'ACC_02_ISO_AutoRetargetTest',...                   % scenarioId = 8
+    
         };
 
 lenght_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi

@@ -24,23 +24,8 @@ assignin('base','PredictionHorizon',30);                % Prediction horizon
 
 %% Create driving scenario
 % The scenario name is a MATLAB function created by the Driving Scenario Designer App. 
-% defaultScenarioFcnName = "LFACC_04_Curve_CutInOut";
-defaultScenarioFcnName = scenario_name;
 
-%QUESTO E' QUELLO ORIGINALE CHE HO COMMENTANTO PER NON ELIMINARLO 
-% validScenarioFcnNames = {
-%     'ACC_01_ISO_TargetDiscriminationTest',...          % scenarioId = 1
-%     'ACC_02_ISO_AutoRetargetTest',...                  % scenarioId = 2
-%     'ACC_03_ISO_CurveTest',...                         % scenarioId = 3
-%     'ACC_04_StopnGo',...                               % scenarioId = 4
-%     'LFACC_01_DoubleCurve_DecelTarget',...             % scenarioId = 5
-%     'LFACC_02_DoubleCurve_AutoRetarget',...            % scenarioId = 6
-%     'scenarioOstacoloSuStrada',...                     % scenarioId = 7
-%     'LFACC_04_Curve_CutInOut',...                      % scenarioId = 8
-%     'selvinotest',...                                  % scenarioId = 9
-%     };
-% 
-% scenarioStopTimes = [19.82 17.99 21.99 25.88 26.93 39.51 60.20 22.80 60.20];
+defaultScenarioFcnName = scenario_name;
 
 validScenarioFcnNames = {
     'curvaLunga',...                                    % scenarioId = 1
@@ -49,10 +34,12 @@ validScenarioFcnNames = {
     'A4_Bergamo',...                                    % scenarioId = 4
     'Anaconda',...                                      % scenarioId = 5
     'ACC_01_ISO_TargetDiscriminationTest',...           % scenarioId = 6
+    'LFACC_01_DoubleCurve_DecelTarget',...              % scenarioId = 7
+    'ACC_02_ISO_AutoRetargetTest',...                   % scenarioId = 8
     };
 
-scenarioStopTimes = [50.00 60.20 39.00 45.00 90.00 19.50]; % questo vettore indica i tempi di ogni simulazione 
-scenarioVSet = [25 25 25 30 18 30];    % questo vettore rappresenta la velocità settata per ogni scenario
+scenarioStopTimes = [50.00 60.20 39.00 45.00 90.00 19.50 25.50 24.00]; % questo vettore indica i tempi di ogni simulazione 
+scenarioVSet = [25 25 25 30 18 30 25 15];    % questo vettore rappresenta la velocità settata per ogni scenario
 
 % Parse input
 checkScenarioFncName = @(x) any(strcmp(x,validScenarioFcnNames));
