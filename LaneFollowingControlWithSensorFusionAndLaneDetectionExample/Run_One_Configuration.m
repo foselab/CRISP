@@ -5,8 +5,8 @@
 modelname_simulation = 'LaneFollowingTestBenchExample';
 fprintf('INIZIO CONFIGURAZIONE PARAMETRI AUTO E SCENARIO\n');
 VEHICLE_NAME = 'Panda.m'; 
-SCENARIO_NAME = 'ACC_02_ISO_AutoRetargetTest';
-id_scenario = 8;  % ricordarsi di cambiare anche questo
+SCENARIO_NAME = 'FrenataBrusca';
+id_scenario = 10;  % ricordarsi di cambiare anche questo
 run(VEHICLE_NAME);
 fprintf('PARAMETRI CORRETTAMENTE CONFIGURATI\n');
 
