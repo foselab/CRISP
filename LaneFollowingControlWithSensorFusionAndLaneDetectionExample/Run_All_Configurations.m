@@ -34,6 +34,7 @@ lenght_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
     'ACC_01_ISO_TargetDiscriminationTest',...           % scenarioId = 6
     'LFACC_01_DoubleCurve_DecelTarget',...              % scenarioId = 7
     'ACC_02_ISO_AutoRetargetTest',...                   % scenarioId = 8
+    'A7_Milano_Genova'...                               % scenarioId = 9
     
         };
 
