@@ -34,7 +34,7 @@ lenght_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
     'ACC_01_ISO_TargetDiscriminationTest',...           % scenarioId = 6
     'LFACC_01_DoubleCurve_DecelTarget',...              % scenarioId = 7
     'ACC_02_ISO_AutoRetargetTest',...                   % scenarioId = 8
-    'A7_Milano_Genova',...                              % scenarioId = 9
+    'Highway_double_target',...                         % scenarioId = 9
     'FrenataBrusca',...                                 % scenarioId = 10
     
         };
@@ -50,7 +50,7 @@ varNames = ["Scenario", "Vehicle", "Fitness_Hecate"];
 Results_Table = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
 %% FUNZIONE CICLICA CHE VA A RUNNARE TUTTE LE POSSIBILI CONFIGURAZIONI
-
+tic;  % Inizia il timer
 row_counter = 1;
 
 
@@ -91,5 +91,7 @@ end
 % salvo i dati in un file excel 
 writetable(Results_Table, 'tabellarisultati.xlsx');
 
+tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
+disp(['Tempo impiegato: ', num2str(tempo_trascorso), ' secondi']);
 
 

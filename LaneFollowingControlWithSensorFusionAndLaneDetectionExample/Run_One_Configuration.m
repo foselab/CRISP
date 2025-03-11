@@ -1,12 +1,12 @@
 %% NEL CASO VOLESSI TESTARE UNA SINGOLA CONFIGURAZIONE
 %% INSERENDO IL NOME DELLO SCENARIO E DEL VEICOLO DESIDERATO
-
+tic;  % Inizia il timer
 % configurazione parametri, si inserisce il nome del file dell'automobile e il nome del file dello scenario 
 modelname_simulation = 'LaneFollowingTestBenchExample';
 fprintf('INIZIO CONFIGURAZIONE PARAMETRI AUTO E SCENARIO\n');
-VEHICLE_NAME = 'Panda.m'; 
-SCENARIO_NAME = 'FrenataBrusca';
-id_scenario = 10;  % ricordarsi di cambiare anche questo
+VEHICLE_NAME = 'Colorado.m'; 
+SCENARIO_NAME = 'Highway_double_target';
+id_scenario = 9;  % ricordarsi di cambiare anche questo
 run(VEHICLE_NAME);
 fprintf('PARAMETRI CORRETTAMENTE CONFIGURATI\n');
 
@@ -31,3 +31,6 @@ fprintf('DATI SALVATI CORRETTAMENTE\n');
 
 %stampa con risultato fitness simulazione
 fprintf('LA SIMULAZIONE ESEGUITA HA OTTENUTO UN VALORE DI FITNESS: %d\n', fitness_simulation);
+
+tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
+disp(['Tempo impiegato: ', num2str(tempo_trascorso), ' secondi']);
