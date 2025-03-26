@@ -19,7 +19,7 @@ Vehicles_Parameters = {
     
     };
 
-lenght_vehicles_array = length(Vehicles_Parameters);             %lunghezza array veicoli
+length_vehicles_array = length(Vehicles_Parameters);             %lunghezza array veicoli
 
 %% ELENCO POSSIBILI SCENARI (organizzato in un vettore di celle)
 % quando si aggiunge un nuovo scenario, nel file di setup bisogna inserire
@@ -39,13 +39,13 @@ lenght_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
     
         };
 
-lenght_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi
+length_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi
 
 %% CREAZIONE TABELLA VUOTA, CONFIGURATA PER CONTENERE I VALORI DI OGNI CONFIGURAZIONE
-rows = lenght_scenarios_array * lenght_vehicles_array;
-sz = [rows 3];
-varTypes = ["string", "string", "double"];
-varNames = ["Scenario", "Vehicle", "Fitness_Hecate"];
+rows = length_scenarios_array * length_vehicles_array;
+sz = [rows 4];
+varTypes = ["string", "string", "double", "logical"];
+varNames = ["Scenario", "Vehicle", "Fitness_Hecate", "Collision"];
 
 Results_Table = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
@@ -54,12 +54,12 @@ tic;  % Inizia il timer
 row_counter = 1;
 
 
-for i = 1 : lenght_vehicles_array
+for i = 1 : length_vehicles_array
 
     %configurazioni parametri veicolo
     run(Vehicles_Parameters{i});
 
-    for j = 1 : lenght_scenarios_array       
+    for j = 1 : length_scenarios_array       
         scenario_id = j;
         %configurazione simulazione
         fprintf('CONFIGURAZIONE SIMULAZIONE\n');
@@ -80,16 +80,18 @@ for i = 1 : lenght_vehicles_array
         fprintf('SALVATAGGIO DATI\n');
         Actual_Scenario_Name = Scenario_Array_validi{j};    
         Actual_Vehicle_Name = Vehicles_Parameters{i};
-        fit_values = Out.logsout{6}.Values.Data;
+        fit_values = Out.logsout{6}.Values.Data; 
         fitness_simulation = fit_values(end);
-        Results_Table(row_counter,:)={Actual_Scenario_Name, Actual_Vehicle_Name, fitness_simulation};   
+        Collision_values = Out.logsout{1}.Values.Data;
+        Collision = Collision_values(end);
+        Results_Table(row_counter,:)={Actual_Scenario_Name, Actual_Vehicle_Name, fitness_simulation, Collision};   
         row_counter = row_counter+1;
     end
 
 end 
 
 % salvo i dati in un file excel 
-writetable(Results_Table, 'tabellarisultati_CONF_1.xlsx');
+writetable(Results_Table, 'tabellarisultati_CONF_2.xlsx');
 
 tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
 disp(['Tempo impiegato: ', num2str(tempo_trascorso), ' secondi']);

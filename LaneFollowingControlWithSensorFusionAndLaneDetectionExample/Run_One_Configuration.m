@@ -4,9 +4,9 @@ tic;  % Inizia il timer
 % configurazione parametri, si inserisce il nome del file dell'automobile e il nome del file dello scenario 
 modelname_simulation = 'LaneFollowingTestBenchExample';
 fprintf('INIZIO CONFIGURAZIONE PARAMETRI AUTO E SCENARIO\n');
-VEHICLE_NAME = 'A4.m'; 
-SCENARIO_NAME = 'A4_Bergamo';
-id_scenario = 4;  % ricordarsi di cambiare anche questo
+VEHICLE_NAME = 'Malibu.m'; 
+SCENARIO_NAME = 'ACC_02_ISO_AutoRetargetTest';
+id_scenario = 8;  % ricordarsi di cambiare anche questo
 run(VEHICLE_NAME);
 fprintf('PARAMETRI CORRETTAMENTE CONFIGURATI\n');
 
@@ -27,6 +27,8 @@ plotLFResults(Out.logsout, time_gap, default_spacing);
 %salvataggio dati
 fit_values = Out.logsout{6}.Values.Data;
 fitness_simulation = fit_values(end);
+Collision_values = Out.logsout{1}.Values.Data;
+Collision = Collision_values(end);
 fprintf('DATI SALVATI CORRETTAMENTE\n');
 
 %stampa con risultato fitness simulazione
@@ -34,3 +36,4 @@ fprintf('LA SIMULAZIONE ESEGUITA HA OTTENUTO UN VALORE DI FITNESS: %d\n', fitnes
 
 tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
 disp(['Tempo impiegato: ', num2str(tempo_trascorso), ' secondi']);
+fprintf("Collisione avvenuta: %d\n", Collision);
