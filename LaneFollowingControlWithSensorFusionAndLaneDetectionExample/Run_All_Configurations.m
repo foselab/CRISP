@@ -58,12 +58,12 @@ for i = 1 : length_vehicles_array
 
     %configurazioni parametri veicolo
     run(Vehicles_Parameters{i});
-
+    min_acceleration_CONFIG_3 = 40/100 * min_acceleration; % per il terzo aggiornamento può utilizzare solo il 50% del freno (modifica anche la chiamata a HelperLFSetUp riga 66)
     for j = 1 : length_scenarios_array       
         scenario_id = j;
         %configurazione simulazione
         fprintf('CONFIGURAZIONE SIMULAZIONE\n');
-        helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_Array_validi{j}, scenario_id);
+        helperLFSetUp(max_acceleration, min_acceleration_CONFIG_3, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_Array_validi{j}, scenario_id);
         fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
 
         %configurazione fitness function hecate
@@ -91,7 +91,7 @@ for i = 1 : length_vehicles_array
 end 
 
 % salvo i dati in un file excel 
-writetable(Results_Table, 'tabellarisultati_CONF_2.xlsx');
+writetable(Results_Table, 'tabellarisultati_CONF_4.xlsx');
 
 tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
 disp(['Tempo impiegato: ', num2str(tempo_trascorso), ' secondi']);
