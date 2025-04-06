@@ -58,12 +58,12 @@ for i = 1 : length_vehicles_array
 
     %configurazioni parametri veicolo
     run(Vehicles_Parameters{i});
-    min_acceleration_CONFIG_5 = 60/100 * min_acceleration; % per il quinto aggiornamento può utilizzare solo il 60% del freno (modifica anche la chiamata a HelperLFSetUp riga 66)
+    %min_acceleration_CONFIG_5 = 60/100 * min_acceleration; % per il quinto aggiornamento può utilizzare solo il 60% del freno (modifica anche la chiamata a HelperLFSetUp riga 66)
     for j = 1 : length_scenarios_array       
         scenario_id = j;
         %configurazione simulazione
         fprintf('CONFIGURAZIONE SIMULAZIONE\n');
-        helperLFSetUp(max_acceleration, min_acceleration_CONFIG_5, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_Array_validi{j}, scenario_id);
+        helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_Array_validi{j}, scenario_id);
         fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
 
         %configurazione fitness function hecate
