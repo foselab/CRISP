@@ -4,7 +4,7 @@ tic;  % Inizia il timer
 % configurazione parametri, si inserisce il nome del file dell'automobile e il nome del file dello scenario 
 modelname_simulation = 'LaneFollowingTestBenchExample';
 fprintf('INIZIO CONFIGURAZIONE PARAMETRI AUTO E SCENARIO\n');
-VEHICLE_NAME = 'A4.m'; 
+VEHICLE_NAME = 'Panda.m'; 
 SCENARIO_NAME = 'LFACC_04_Curve_CutInOut';
 id_scenario = 2;  % ricordarsi di cambiare anche questo
 run(VEHICLE_NAME);
@@ -17,7 +17,7 @@ fprintf('HECATE CONFIGURATO CORRETTAMENTE\n');
 
 %inizio simulazione
 fprintf('INIZIO SIMULAZIONE\n');
-helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, SCENARIO_NAME, id_scenario);
+helperLFSetUp(max_acceleration, min_acceleration, 0.01, -0.01, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, SCENARIO_NAME, id_scenario);
 [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
 fprintf('SIMULAZIONE CONCLUSA\n');
 
