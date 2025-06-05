@@ -4,9 +4,9 @@ tic;  % Inizia il timer
 % configurazione parametri, si inserisce il nome del file dell'automobile e il nome del file dello scenario 
 modelname_simulation = 'LaneFollowingTestBenchExample';
 fprintf('INIZIO CONFIGURAZIONE PARAMETRI AUTO E SCENARIO\n');
-VEHICLE_NAME = 'Panda.m'; 
-SCENARIO_NAME = 'LFACC_04_Curve_CutInOut';
-id_scenario = 2;  % ricordarsi di cambiare anche questo
+VEHICLE_NAME = 'Camaro.m'; 
+SCENARIO_NAME = 'LFACC_02_DoubleCurve_AutoRetarget';
+id_scenario = 3;  % ricordarsi di cambiare anche questo
 run(VEHICLE_NAME);
 fprintf('PARAMETRI CORRETTAMENTE CONFIGURATI\n');
 
