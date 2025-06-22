@@ -3,7 +3,7 @@
 
 %% ordinamento dei dati secondo la fitness di Hecate
 
-FileNameExcel = 'tabellarisultati.xlsx'; 
+FileNameExcel = 'tabellarisultati_TEST_V9_CONF_0.xlsx'; 
 [~, ~, raw] = xlsread(FileNameExcel); 
 
 % separo l'intestazione dai dati reali 
@@ -31,10 +31,14 @@ Vehicles_Parameters = {
     'Malibu.m',...          % VehicleId = 1
     'Panda.m',...           % VehicleId = 2
     'Camaro.m',...          % VehicleId = 3
-    'Colorado.m'...         % VehicleId = 4
+    'Colorado.m',...        % VehicleId = 4
+    'A4.m',...              % VehicleId = 5
+    'Polo.m',...            % VehicleId = 6
+    'Tcross',...            % VehicleId = 7
+    
     };
 
-lenght_vehicles_array = length(Vehicles_Parameters);  %lunghezza array veicoli
+length_vehicles_array = length(Vehicles_Parameters);             %lunghezza array veicoli
 
 %% ELENCO POSSIBILI SCENARI (organizzato in un vettore di celle)
 
@@ -42,18 +46,27 @@ lenght_vehicles_array = length(Vehicles_Parameters);  %lunghezza array veicoli
     'curvaLunga',...                                    % scenarioId = 1
     'LFACC_04_Curve_CutInOut',...                       % scenarioId = 2
     'LFACC_02_DoubleCurve_AutoRetarget',...             % scenarioId = 3
+    'A4_Bergamo',...                                    % scenarioId = 4
+    'Anaconda',...                                      % scenarioId = 5
+    'ACC_01_ISO_TargetDiscriminationTest',...           % scenarioId = 6
+    'LFACC_01_DoubleCurve_DecelTarget',...              % scenarioId = 7
+    'ACC_02_ISO_AutoRetargetTest',...                   % scenarioId = 8
+    'Highway_double_target',...                         % scenarioId = 9
+    'FrenataBrusca',...                                 % scenarioId = 10
+    
         };
 
-lenght_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi
+length_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi
 
 %% CREAZIONE TABELLA VUOTA, CONFIGURATA PER CONTENERE I VALORI DI OGNI CONFIGURAZIONE
-rows = lenght_scenarios_array * lenght_vehicles_array;
-sz = [rows 3];
-varTypes = ["string", "string", "double"];
-varNames = ["Scenario", "Vehicle", "Fitness_Hecate"];
+rows = length_scenarios_array * length_vehicles_array;
+sz = [rows 4];
+varTypes = ["string", "string", "double", "logical"];
+varNames = ["Scenario", "Vehicle", "Fitness_Hecate", "Collision"];
 
 Results_Table_by_Fitness = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
+% ARRIVATO A SISTEMARE FINO A QUESTO PUNTO 
 
 %% SIMULAZIONE 
 
