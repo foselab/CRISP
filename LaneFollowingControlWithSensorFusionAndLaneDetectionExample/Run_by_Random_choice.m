@@ -1,9 +1,7 @@
 %% IN QUESTO FILE PRENDIAMO I RISULTATI FORNITI DALLA SIMULAZIONE DI PARTENZA E RIESEGUIAMO LE 
-%% SIMULAZIONI TENENDO CONTO DEL RISULTATO OTTENUTO DALLA FUNZIONE FITNESS
-% in questo modo possiamo eseguire le simulazioni per la nuova
-% configurazione basando l'ordine sul valore delle funzioni fitness
+%% SIMULAZIONI IN ORDINE CASUALE
 
-%% ordinamento dei dati secondo la fitness di Hecate
+%% LETTURA DATI
 
 FileNameExcel = 'tabellarisultati_TEST_V9_CONF_0.xlsx'; 
 [~, ~, raw] = xlsread(FileNameExcel); 
@@ -11,15 +9,6 @@ FileNameExcel = 'tabellarisultati_TEST_V9_CONF_0.xlsx';
 % separo l'intestazione dai dati reali 
 header = raw(1, :); 
 data = raw(2:end,:); 
-
-% estraggo i valori contenuti nella colonna della fitness function 
-Fitness_Hecate = cell2mat(data(:,3)); 
-
-% ordino le righe in base al valore contenuto nella terza colonna, quella
-% relativa alla fitness
-
-[~, sortIdx] = sort(Fitness_Hecate);
-sorted_Table = data(sortIdx, :); 
 
 %% NOME DELLA SIMULAZIONE
 
@@ -73,8 +62,10 @@ Results_Table_by_Fitness = table('Size', sz, 'VariableTypes',varTypes, 'Variable
 tic;  % Inizia il timer
 numero_casi_fail_trovati = 0; 
 
-numero_iterazioni = size(sorted_Table,1); % il numero di iterazioni da eseguire corrisponde al numero di righe della tabella riordinata
+numero_iterazioni = size(data,1); % il numero di iterazioni da eseguire corrisponde al numero di righe della tabella riordinata
 
+%MODIFICATO FINO A QUESTO PUNTO
+%----------------------------------------------------------------
  
 for i = 1 : numero_iterazioni
     Vehicle_file_name = sorted_Table{i,2};  % leggo il nome del veicolo e 
@@ -140,18 +131,3 @@ Results_Table_by_Fitness.Total_Fault_Found = total_fault_col;
 writetable(Results_Table_by_Fitness, 'tabellarisultatiHecate.xlsx');
 
 disp(['Numero fault trovati in 4000 secondi: ', numero_casi_fail_trovati]);
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
