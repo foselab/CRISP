@@ -57,6 +57,14 @@ varNames = ["Scenario", "Vehicle", "Fitness_Hecate", "Collision"];
 
 Results_Table_by_Fitness = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
+%% CREO VETTORE DI INDICI RANDOMICI
+a = 1;
+b = 70;
+range = a:b;                                % Crea il vettore
+random_order = randperm(length(range));     % Permutazione degli indici
+shuffled_numbers = range(random_order);     % Numeri casuali non ripetuti
+
+% MODIFICATO FINO A QUESTO PUNTO ----------------------------------
 
 %% SIMULAZIONE 
 tic;  % Inizia il timer
@@ -64,9 +72,7 @@ numero_casi_fail_trovati = 0;
 
 numero_iterazioni = size(data,1); % il numero di iterazioni da eseguire corrisponde al numero di righe della tabella riordinata
 
-%MODIFICATO FINO A QUESTO PUNTO
-%----------------------------------------------------------------
- 
+
 for i = 1 : numero_iterazioni
     Vehicle_file_name = sorted_Table{i,2};  % leggo il nome del veicolo e 
     run(Vehicle_file_name);                 % ne eseguo il codice 
