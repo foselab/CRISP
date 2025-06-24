@@ -55,16 +55,12 @@ sz = [rows 4];
 varTypes = ["string", "string", "double", "logical"];
 varNames = ["Scenario", "Vehicle", "Fitness_Hecate", "Collision"];
 
-Results_Table_by_Fitness = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
+Results_Table_by_Random = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
 %% CREO VETTORE DI INDICI RANDOMICI
-a = 1;
-b = 70;
-range = a:b;                                % Crea il vettore
+range = 1:70;                                % Crea il vettore
 random_order = randperm(length(range));     % Permutazione degli indici
 shuffled_numbers = range(random_order);     % Numeri casuali non ripetuti
-
-% MODIFICATO FINO A QUESTO PUNTO ----------------------------------
 
 %% SIMULAZIONE 
 tic;  % Inizia il timer
@@ -73,15 +69,16 @@ numero_casi_fail_trovati = 0;
 numero_iterazioni = size(data,1); % il numero di iterazioni da eseguire corrisponde al numero di righe della tabella riordinata
 
 
-for i = 1 : numero_iterazioni
-    Vehicle_file_name = sorted_Table{i,2};  % leggo il nome del veicolo e 
+for i = 1 : 45
+    number = shuffled_numbers(i);
+    Vehicle_file_name = data{number,2};  % leggo il nome del veicolo e 
     run(Vehicle_file_name);                 % ne eseguo il codice 
-    min_acceleration_V9_CONFIG1_fitness = 10/100 * min_acceleration;  
+    min_acceleration_V9_CONFIG1_random = 10/100 * min_acceleration;  
 
-    Scenario_file_name = sorted_Table{i,1}; % estraggo il nome dello scenario
+    Scenario_file_name = data{number,1}; % estraggo il nome dello scenario
     
     % questo ciclo for mi serve per estrarre l'id dello scenario 
-    for j=1 : lenght_scenarios_array
+    for j=1 : length_scenarios_array
         if(strcmp(Scenario_Array_validi{j},Scenario_file_name))
             scenario_id = j;
             break;
@@ -90,7 +87,7 @@ for i = 1 : numero_iterazioni
 
     % configurazione simulazione
     fprintf('CONFIGURAZIONE SIMULAZIONE\n');
-    helperLFSetUp(max_acceleration, min_acceleration_V9_CONFIG1_fitness, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_file_name, scenario_id);
+    helperLFSetUp(max_acceleration, min_acceleration_V9_CONFIG1_random, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_file_name, scenario_id);
     fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
     
 
@@ -111,16 +108,12 @@ for i = 1 : numero_iterazioni
     fitness_simulation = fit_values(end);
 
     if(fitness_simulation<0)
-        numero_casi_fail_trovati = numero_casi_fail_trovati +1; 
+        numero_casi_fail_trovati = numero_casi_fail_trovati+1; 
     end
      
     Collision_values = Out.logsout{1}.Values.Data;
     Collision = Collision_values(end);
-    Results_Table_by_Fitness(i,:)={Scenario_file_name, Vehicle_file_name, fitness_simulation, Collision};
-
-    if(toc>4000)
-        break;
-    end
+    Results_Table_by_Random(i,:)={Scenario_file_name, Vehicle_file_name, fitness_simulation, Collision};
         
 end
 
@@ -128,12 +121,12 @@ tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
 
 %% Aggiunta colonna "Total_Fault_Found"
 
-total_fault_col = NaN(height(Results_Table_by_Fitness), 1);
+total_fault_col = NaN(height(Results_Table_by_Random), 1);
 total_fault_col(1) = numero_casi_fail_trovati;
-Results_Table_by_Fitness.Total_Fault_Found = total_fault_col;
+Results_Table_by_Random.Total_Fault_Found = total_fault_col;
 
 %% salvataggio dati in un file excel 
 
-writetable(Results_Table_by_Fitness, 'tabellarisultatiHecate.xlsx');
+writetable(Results_Table_by_Random, 'tabellarisultatiRandom.xlsx');
 
-disp(['Numero fault trovati in 4000 secondi: ', numero_casi_fail_trovati]);
+disp(['Numero fault trovati in 45 simulazioni: ', numero_casi_fail_trovati]);

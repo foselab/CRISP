@@ -76,7 +76,7 @@ numero_casi_fail_trovati = 0;
 numero_iterazioni = size(sorted_Table,1); % il numero di iterazioni da eseguire corrisponde al numero di righe della tabella riordinata
 
  
-for i = 1 : numero_iterazioni
+for i = 1 : 45
     Vehicle_file_name = sorted_Table{i,2};  % leggo il nome del veicolo e 
     run(Vehicle_file_name);                 % ne eseguo il codice 
     min_acceleration_V9_CONFIG1_fitness = 10/100 * min_acceleration;  
@@ -84,7 +84,7 @@ for i = 1 : numero_iterazioni
     Scenario_file_name = sorted_Table{i,1}; % estraggo il nome dello scenario
     
     % questo ciclo for mi serve per estrarre l'id dello scenario 
-    for j=1 : lenght_scenarios_array
+    for j=1 : length_scenarios_array
         if(strcmp(Scenario_Array_validi{j},Scenario_file_name))
             scenario_id = j;
             break;
@@ -121,9 +121,6 @@ for i = 1 : numero_iterazioni
     Collision = Collision_values(end);
     Results_Table_by_Fitness(i,:)={Scenario_file_name, Vehicle_file_name, fitness_simulation, Collision};
 
-    if(toc>4000)
-        break;
-    end
         
 end
 
@@ -139,7 +136,7 @@ Results_Table_by_Fitness.Total_Fault_Found = total_fault_col;
 
 writetable(Results_Table_by_Fitness, 'tabellarisultatiHecate.xlsx');
 
-disp(['Numero fault trovati in 4000 secondi: ', numero_casi_fail_trovati]);
+disp(['Numero fault trovati in 45 simulazioni: ', numero_casi_fail_trovati]);
     
 
 
