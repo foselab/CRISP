@@ -76,15 +76,16 @@ numero_casi_fail_trovati = 0;
 numero_iterazioni = size(sorted_Table,1); % il numero di iterazioni da eseguire corrisponde al numero di righe della tabella riordinata
 
  
-for i = 1 : 45
+for i = 1 : 35
     Vehicle_file_name = sorted_Table{i,2};  % leggo il nome del veicolo e 
     run(Vehicle_file_name);                 % ne eseguo il codice 
+    
     min_acceleration_V9_CONFIG1_fitness = 10/100 * min_acceleration;  
 
     Scenario_file_name = sorted_Table{i,1}; % estraggo il nome dello scenario
     
     % questo ciclo for mi serve per estrarre l'id dello scenario 
-    for j=1 : length_scenarios_array
+    for j = 1 : length_scenarios_array
         if(strcmp(Scenario_Array_validi{j},Scenario_file_name))
             scenario_id = j;
             break;
@@ -134,9 +135,9 @@ Results_Table_by_Fitness.Total_Fault_Found = total_fault_col;
 
 %% salvataggio dati in un file excel 
 
-writetable(Results_Table_by_Fitness, 'tabellarisultatiHecate.xlsx');
+writetable(Results_Table_by_Fitness, 'tabellarisultatiHecate_CONF1.xlsx');
 
-disp(['Numero fault trovati in 45 simulazioni: ', numero_casi_fail_trovati]);
+fprintf('Numero fault trovati in 35 simulazioni: %d\n', numero_casi_fail_trovati);
     
 
 

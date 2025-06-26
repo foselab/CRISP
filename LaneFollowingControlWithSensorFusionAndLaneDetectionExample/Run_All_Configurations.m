@@ -59,7 +59,6 @@ for i = 1 : length_vehicles_array
     %configurazioni parametri veicolo
     run(Vehicles_Parameters{i});
     
-    %min_acceleration_CONFIG_5 = 60/100 * min_acceleration; % per il quinto aggiornamento può utilizzare solo il 60% del freno (modifica anche la chiamata a HelperLFSetUp riga 68)
     min_acceleration_V9_CONFIG1 = 10/100 * min_acceleration;
     for j = 1 : length_scenarios_array       
         scenario_id = j;

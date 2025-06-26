@@ -58,10 +58,13 @@ varNames = ["Scenario", "Vehicle", "Fitness_Hecate", "Collision"];
 Results_Table_by_Random = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
 %% CREO VETTORE DI INDICI RANDOMICI
-range = 1:70;                                % Crea il vettore
-random_order = randperm(length(range));     % Permutazione degli indici
-shuffled_numbers = range(random_order);     % Numeri casuali non ripetuti
+s = rng; 
 
+range = 1:70;                               % Crea il vettore
+rng('shuffle');                             % Usa il tempo di sistema per generare una sequenza diversa ogni volta
+shuffled_numbers = randperm(70);
+
+rng(s);
 %% SIMULAZIONE 
 tic;  % Inizia il timer
 numero_casi_fail_trovati = 0; 
@@ -69,7 +72,7 @@ numero_casi_fail_trovati = 0;
 numero_iterazioni = size(data,1); % il numero di iterazioni da eseguire corrisponde al numero di righe della tabella riordinata
 
 
-for i = 1 : 45
+for i = 1 : 35
     number = shuffled_numbers(i);
     Vehicle_file_name = data{number,2};  % leggo il nome del veicolo e 
     run(Vehicle_file_name);                 % ne eseguo il codice 
@@ -127,6 +130,6 @@ Results_Table_by_Random.Total_Fault_Found = total_fault_col;
 
 %% salvataggio dati in un file excel 
 
-writetable(Results_Table_by_Random, 'tabellarisultatiRandom.xlsx');
+writetable(Results_Table_by_Random, 'tabellarisultatiRandom_CONF1.xlsx');
 
-disp(['Numero fault trovati in 45 simulazioni: ', numero_casi_fail_trovati]);
+fprintf('Numero fault trovati in 35 simulazioni: %d\n', numero_casi_fail_trovati);
