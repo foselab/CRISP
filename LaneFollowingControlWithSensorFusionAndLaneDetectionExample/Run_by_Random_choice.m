@@ -130,6 +130,6 @@ Results_Table_by_Random.Total_Fault_Found = total_fault_col;
 
 %% salvataggio dati in un file excel 
 
-writetable(Results_Table_by_Random, 'tabellarisultatiRandom_CONF1.xlsx');
+writetable(Results_Table_by_Random, 'tabellarisultatiRandom_CONF1_TEST_2.xlsx');
 
 fprintf('Numero fault trovati in 35 simulazioni: %d\n', numero_casi_fail_trovati);
