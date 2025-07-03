@@ -76,7 +76,7 @@ numero_casi_fail_trovati = 0;
 numero_iterazioni = size(sorted_Table,1); % il numero di iterazioni da eseguire corrisponde al numero di righe della tabella riordinata
 
  
-for i = 1 : 35
+for i = 1 : numero_iterazioni
     Vehicle_file_name = sorted_Table{i,2};  % leggo il nome del veicolo e 
     run(Vehicle_file_name);                 % ne eseguo il codice 
     
@@ -115,7 +115,7 @@ for i = 1 : 35
     fitness_simulation = fit_values(end);
 
     if(fitness_simulation<0)
-        numero_casi_fail_trovati = numero_casi_fail_trovati +1; 
+        numero_casi_fail_trovati = numero_casi_fail_trovati+1; 
     end
      
     Collision_values = Out.logsout{1}.Values.Data;
@@ -127,23 +127,39 @@ end
 
 tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
 
-%% Aggiunta colonna "Total_Fault_Found"
+%% AGGIUNTA COLONNA "Total_Fault_Found"
 
 total_fault_col = NaN(height(Results_Table_by_Fitness), 1);
 total_fault_col(1) = numero_casi_fail_trovati;
 Results_Table_by_Fitness.Total_Fault_Found = total_fault_col;
 
-%% salvataggio dati in un file excel 
+%% SALVATAGGIO DATI 
 
 writetable(Results_Table_by_Fitness, 'tabellarisultatiHecate_CONF1.xlsx');
 
-fprintf('Numero fault trovati in 35 simulazioni: %d\n', numero_casi_fail_trovati);
-    
+fprintf('Numero fault trovati in 70 simulazioni: %d\n', numero_casi_fail_trovati);
 
+%% CREAZIONE GRAFICO 
 
+T = readtable('tabellarisultatiHecate_CONF1.xlsx');
+vettore_collisioni = double(T{1:end, 4}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
+vettore_collisioni_cumulativo = cumsum(vettore_collisioni);
 
+asse_x = 1:length(vettore_collisioni_cumulativo);
 
+figure; 
+p=plot(asse_x,vettore_collisioni_cumulativo);
+p.LineWidth=2;
+p.Marker="o";
 
+yticks(0:1:max(vettore_collisioni_cumulativo));
+
+xlabel('Simulazioni');
+ylabel('Collisioni');
+title('Grafico performance HECATE');
+grid on;
+filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_hecate.fig');
+savefig(filename);
 
 
 
