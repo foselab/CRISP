@@ -142,20 +142,27 @@ fprintf('Numero fault trovati in 70 simulazioni: %d\n', numero_casi_fail_trovati
 %% CREAZIONE GRAFICO 
 
 T = readtable('tabellarisultatiHecate_CONF1.xlsx');
-vettore_collisioni = double(T{1:end, 4}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
-vettore_collisioni_cumulativo = cumsum(vettore_collisioni);
+vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
+vettore_failure_binario = zeros(1,length(vettore_failure));
+for i=1:length(vettore_failure)
+    if(vettore_failure(i)<0)
+        vettore_failure_binario(i)=1;
+    end
+end
 
-asse_x = 1:length(vettore_collisioni_cumulativo);
+vettore_failure_binario = cumsum(vettore_failure_binario);
+
+asse_x = 1:length(vettore_failure_binario);
 
 figure; 
-p=plot(asse_x,vettore_collisioni_cumulativo);
+p=plot(asse_x,vettore_failure_binario);
 p.LineWidth=2;
 p.Marker="o";
 
-yticks(0:1:max(vettore_collisioni_cumulativo));
+yticks(0:1:max(vettore_failure_binario));
 
 xlabel('Simulazioni');
-ylabel('Collisioni');
+ylabel('Failure');
 title('Grafico performance HECATE');
 grid on;
 filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_hecate.fig');
