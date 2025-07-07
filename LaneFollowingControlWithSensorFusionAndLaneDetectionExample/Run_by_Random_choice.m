@@ -26,7 +26,6 @@ random_order_4 = randperm(70);
 random_order_5 = randperm(70);
 matrice_rand = [random_order_1;random_order_2;random_order_3;random_order_4;random_order_5];
 
-
 rng(s);
 
 %% ELENCO AUTOMOBILI DISPONIBILI (organizzato in un vettore di celle) 
@@ -64,31 +63,27 @@ length_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
 
 length_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi
 
-%% CREAZIONE TABELLA VUOTA, CONFIGURATA PER CONTENERE I VALORI DI OGNI CONFIGURAZIONE
-rows = length_scenarios_array * length_vehicles_array;
-sz = [rows 4];
-varTypes = ["string", "string", "double", "logical"];
-varNames = ["Scenario", "Vehicle", "Fitness_Hecate", "Collision"];
 
-Results_Table_by_Random = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
-%% CREO VETTORE DI INDICI RANDOMICI
-s = rng; 
-
-range = 1:70;                               % Crea il vettore
-rng('shuffle');                             % Usa il tempo di sistema per generare una sequenza diversa ogni volta
-random_order_1 = randperm(70);
-
-rng(s);
 %% SIMULAZIONE 
 tic;  % Inizia il timer
 numero_casi_fail_trovati = 0; 
 
 numero_iterazioni = size(data,1); % il numero di iterazioni da eseguire corrisponde al numero di righe della tabella riordinata
 
-for s = 1 : 5
+for column = 1 : 5
+
+    numero_casi_fail_trovati = 0; 
+    %creo una tabella nuova ad ogni run
+    rows = length_scenarios_array * length_vehicles_array;
+    sz = [rows 4];
+    varTypes = ["string", "string", "double", "logical"];
+    varNames = ["Scenario", "Vehicle", "Fitness_Hecate", "Collision"];
+
+    Results_Table_by_Random = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
+
     for i = 1 : numero_iterazioni
-        number = matrice_rand(s,i);
+        number = matrice_rand(column,i);
         Vehicle_file_name = data{number,2};  % leggo il nome del veicolo e 
         run(Vehicle_file_name);                 % ne eseguo il codice 
         min_acceleration_V9_CONFIG1_random = 10/100 * min_acceleration;  
@@ -142,7 +137,7 @@ for s = 1 : 5
     Results_Table_by_Random.Total_Fault_Found = total_fault_col;
     
     % CREAZIONE TABELLA EXCEL
-    filename = sprintf('tabellarisultatiRandom_CONF1_RUN_%d.xlsx',s);
+    filename = sprintf('tabellarisultatiRandom_CONF1_RUN_%d.xlsx',column);
     writetable(Results_Table_by_Random, filename);
 end
 
@@ -292,12 +287,6 @@ savefig(filename);
 
 
 
-
-%% Aggiunta colonna "Total_Fault_Found"
-
-%total_fault_col = NaN(height(Results_Table_by_Random), 1);
-%total_fault_col(1) = numero_casi_fail_trovati;
-%Results_Table_by_Random.Total_Fault_Found = total_fault_col;
 
 %% salvataggio dati in un file excel 
 
