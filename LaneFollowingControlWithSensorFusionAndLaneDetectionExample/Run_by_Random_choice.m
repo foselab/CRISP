@@ -287,9 +287,3 @@ savefig(filename);
 
 
 
-
-%% salvataggio dati in un file excel 
-
-%writetable(Results_Table_by_Random, 'tabellarisultatiRandom_CONF1_RUN_4.xlsx');
-
-%fprintf('Numero fault trovati in 35 simulazioni: %d\n', numero_casi_fail_trovati);
