@@ -83,3 +83,31 @@ title('Grafico performance RANDOM MEDIO');
 grid on;
 filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_random_medio.fig');
 savefig(filename);
+
+%% grafico sovrapposto 
+T_fitness = readtable('tabellarisultatiHecate_CONF1.xlsx');
+vettore_failure = double(T_fitness{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
+vettore_failure_binario = zeros(1,length(vettore_failure));
+for i=1:length(vettore_failure)
+    if(vettore_failure(i)<0)
+        vettore_failure_binario(i)=1;
+    end
+end
+
+vettore_failure_binario = cumsum(vettore_failure_binario);
+
+asse_x = 1:length(vettore_failure);
+figure; 
+p=plot(asse_x, vettore_failure_binario,'r-o', asse_x, vettore_failure_medio,'g-o');
+p(1).LineWidth=2;
+p(2).LineWidth=2;
+
+
+yticks(0:1:max(vettore_failure_medio));
+
+xlabel('Simulazioni');
+ylabel('Failure');
+title('RANDOM (green) vs FITNESS (red)');
+grid on;
+filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_CONFRONTO.fig');
+savefig(filename);
