@@ -5,8 +5,8 @@ tic;  % Inizia il timer
 modelname_simulation = 'LaneFollowingTestBenchExample';
 fprintf('INIZIO CONFIGURAZIONE PARAMETRI AUTO E SCENARIO\n');
 VEHICLE_NAME = 'Malibu.m'; 
-SCENARIO_NAME = 'LFACC_02_DoubleCurve_AutoRetarget';
-id_scenario = 3;  % ricordarsi di cambiare anche questo
+SCENARIO_NAME = 'Ushape';
+id_scenario = 11;  % ricordarsi di cambiare anche questo
 run(VEHICLE_NAME);
 fprintf('PARAMETRI CORRETTAMENTE CONFIGURATI\n');
 
@@ -18,7 +18,7 @@ fprintf('HECATE CONFIGURATO CORRETTAMENTE\n');
 %inizio simulazione
 fprintf('INIZIO SIMULAZIONE\n');
 min_acceleration_CONF_1 = (10/100)*min_acceleration;
-helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, SCENARIO_NAME, id_scenario);
+helperLFSetUp(max_acceleration, min_acceleration_CONF_1, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, SCENARIO_NAME, id_scenario);
 [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
 fprintf('SIMULAZIONE CONCLUSA\n');
 
