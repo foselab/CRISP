@@ -4,9 +4,9 @@ tic;  % Inizia il timer
 % configurazione parametri, si inserisce il nome del file dell'automobile e il nome del file dello scenario 
 modelname_simulation = 'LaneFollowingTestBenchExample';
 fprintf('INIZIO CONFIGURAZIONE PARAMETRI AUTO E SCENARIO\n');
-VEHICLE_NAME = 'Malibu.m'; 
-SCENARIO_NAME = 'Pacific_Coast_Highway';
-id_scenario = 14;  % ricordarsi di cambiare anche questo
+VEHICLE_NAME = 'A4.m'; 
+SCENARIO_NAME = 'A8_Stoccarda_Monaco';
+id_scenario = 16;  % ricordarsi di cambiare anche questo
 run(VEHICLE_NAME);
 fprintf('PARAMETRI CORRETTAMENTE CONFIGURATI\n');
 
