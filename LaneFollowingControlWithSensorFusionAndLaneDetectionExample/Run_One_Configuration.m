@@ -5,8 +5,8 @@ tic;  % Inizia il timer
 modelname_simulation = 'LaneFollowingTestBenchExample';
 fprintf('INIZIO CONFIGURAZIONE PARAMETRI AUTO E SCENARIO\n');
 VEHICLE_NAME = 'A4.m'; 
-SCENARIO_NAME = 'Sea_Sky_Hwy';
-id_scenario = 18;  % ricordarsi di cambiare anche questo
+SCENARIO_NAME = 'Las_Vegas_Freeway';
+id_scenario = 20;  % ricordarsi di cambiare anche questo
 run(VEHICLE_NAME);
 fprintf('PARAMETRI CORRETTAMENTE CONFIGURATI\n');
 

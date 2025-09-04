@@ -46,10 +46,12 @@ validScenarioFcnNames = {
     'A8_Stoccarda_Monaco',...                           % scenarioId = 16
     'Overseas_Hwy',...                                  % scenarioId = 17
     'Sea_Sky_Hwy',...                                   % scenarioId = 18
+    'Queen_Elizabeth_Way_Oakville',...                  % scenarioId = 19
+    'Las_Vegas_Freeway',...                             % scenarioId = 20
     };
 
-scenarioStopTimes = [50.00 60.20 39.00 45.00 90.00 19.50 25.50 24.00 18.00 22.50 30.00 60.00 40.00 65.00 70.00 50.00 70.00 28.00]; % questo vettore indica i tempi di ogni simulazione 
-scenarioVSet = [25 25 25 30 18 30 25 15 42 25 30 30 30 19 30 50 45 30];    % questo vettore rappresenta la velocità settata per ogni scenario
+scenarioStopTimes = [50.00 60.20 39.00 45.00 90.00 19.50 25.50 24.00 18.00 22.50 30.00 60.00 40.00 65.00 70.00 50.00 70.00 28.00 35.00 40.00]; % questo vettore indica i tempi di ogni simulazione 
+scenarioVSet = [25 25 25 30 18 30 25 15 42 25 30 30 30 19 30 50 45 30 30 35];    % questo vettore rappresenta la velocità settata per ogni scenario
 
 % Parse input
 checkScenarioFncName = @(x) any(strcmp(x,validScenarioFcnNames));
