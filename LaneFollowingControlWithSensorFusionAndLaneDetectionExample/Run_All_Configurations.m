@@ -36,16 +36,15 @@ length_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
     'ACC_02_ISO_AutoRetargetTest',...                   % scenarioId = 8
     'Highway_double_target',...                         % scenarioId = 9
     'FrenataBrusca',...                                 % scenarioId = 10
-    'Ushape',...                                        % scenarioId = 11
-    'A15_LaSpezia_Parma',...                            % scenarioId = 12
-    'A26_Autostrada_Trafori',...                        % scenarioId = 13
-    'Pacific_Coast_Highway',...                         % scenarioId = 14
-    'Trans_Canada_Hwy',...                              % scenarioId = 15
-    'A8_Stoccarda_Monaco',...                           % scenarioId = 16
-    'Overseas_Hwy',...                                  % scenarioId = 17
-    'Sea_Sky_Hwy',...                                   % scenarioId = 18
-    'Queen_Elizabeth_Way_Oakville',...                  % scenarioId = 19
-    'Las_Vegas_Freeway',...                             % scenarioId = 20
+    'A15_LaSpezia_Parma',...                            % scenarioId = 11
+    'A26_Autostrada_Trafori',...                        % scenarioId = 12
+    'Pacific_Coast_Highway',...                         % scenarioId = 13
+    'Trans_Canada_Hwy',...                              % scenarioId = 14
+    'A8_Stoccarda_Monaco',...                           % scenarioId = 15
+    'Overseas_Hwy',...                                  % scenarioId = 16
+    'Sea_Sky_Hwy',...                                   % scenarioId = 17
+    'Queen_Elizabeth_Way_Oakville',...                  % scenarioId = 18
+    'Las_Vegas_Freeway',...                             % scenarioId = 19
     
         };
 
@@ -102,7 +101,7 @@ for i = 1 : length_vehicles_array
 end 
 
 % salvo i dati in un file excel 
-writetable(Results_Table, 'tabellarisultati_TEST_V9_CONF_0.xlsx');
+writetable(Results_Table, 'tabellarisultati_TEST_V9_CONF_0_finale.xlsx');
 
 tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
 disp(['Tempo impiegato: ', num2str(tempo_trascorso), ' secondi']);
