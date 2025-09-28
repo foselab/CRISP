@@ -5,7 +5,7 @@
 
 %% ordinamento dei dati secondo la fitness di Hecate
 
-FileNameExcel = 'tabellarisultati_TEST_V9_CONF_0.xlsx'; 
+FileNameExcel = 'tabellarisultati_TEST_V9_CONF_0_finale.xlsx'; 
 [~, ~, raw] = xlsread(FileNameExcel); 
 
 % separo l'intestazione dai dati reali 
@@ -36,7 +36,7 @@ Vehicles_Parameters = {
     'Colorado.m',...        % VehicleId = 4
     'A4.m',...              % VehicleId = 5
     'Polo.m',...            % VehicleId = 6
-    'Tcross',...            % VehicleId = 7
+    'Tcross.m',...          % VehicleId = 7
     
     };
 
@@ -55,6 +55,15 @@ length_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
     'ACC_02_ISO_AutoRetargetTest',...                   % scenarioId = 8
     'Highway_double_target',...                         % scenarioId = 9
     'FrenataBrusca',...                                 % scenarioId = 10
+    'A15_LaSpezia_Parma',...                            % scenarioId = 11
+    'A26_Autostrada_Trafori',...                        % scenarioId = 12
+    'Pacific_Coast_Highway',...                         % scenarioId = 13
+    'Trans_Canada_Hwy',...                              % scenarioId = 14
+    'A8_Stoccarda_Monaco',...                           % scenarioId = 15
+    'Overseas_Hwy',...                                  % scenarioId = 16
+    'Sea_Sky_Hwy',...                                   % scenarioId = 17
+    'Queen_Elizabeth_Way_Oakville',...                  % scenarioId = 18
+    'Las_Vegas_Freeway',...                             % scenarioId = 19
     
         };
 
@@ -135,13 +144,13 @@ Results_Table_by_Fitness.Total_Fault_Found = total_fault_col;
 
 %% SALVATAGGIO DATI 
 
-writetable(Results_Table_by_Fitness, 'tabellarisultatiHecate_CONF1.xlsx');
+writetable(Results_Table_by_Fitness, 'tabellarisultatiHecate_CONF1_finale.xlsx');
 
-fprintf('Numero fault trovati in 70 simulazioni: %d\n', numero_casi_fail_trovati);
+fprintf('Numero fault trovati in 133 simulazioni: %d\n', numero_casi_fail_trovati);
 
 %% CREAZIONE GRAFICO 
 
-T = readtable('tabellarisultatiHecate_CONF1.xlsx');
+T = readtable('tabellarisultatiHecate_CONF1_finale.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -165,7 +174,7 @@ xlabel('Simulazioni');
 ylabel('Failure');
 title('Grafico performance HECATE');
 grid on;
-filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_hecate.fig');
+filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_hecate_finale.fig');
 savefig(filename);
 
 

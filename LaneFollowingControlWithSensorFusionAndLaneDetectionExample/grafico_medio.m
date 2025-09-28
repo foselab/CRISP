@@ -1,5 +1,5 @@
 %% CREAZIONE GRAFICO MEDIO 
-T1 = readtable('tabellarisultatiRandom_CONF1_RUN_1.xlsx');
+T1 = readtable('tabellarisultatiRandom_CONF1_RUN_1_finale.xlsx');
 vettore_failure_1 = double(T1{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario_1 = zeros(1,length(vettore_failure_1));
 for i=1:length(vettore_failure_1)
@@ -10,7 +10,7 @@ end
 
 vettore_failure_binario_1 = cumsum(vettore_failure_binario_1);
 
-T2 = readtable('tabellarisultatiRandom_CONF1_RUN_2.xlsx');
+T2 = readtable('tabellarisultatiRandom_CONF1_RUN_2_finale.xlsx');
 vettore_failure_2 = double(T2{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario_2 = zeros(1,length(vettore_failure_2));
 for i=1:length(vettore_failure_2)
@@ -21,7 +21,7 @@ end
 
 vettore_failure_binario_2 = cumsum(vettore_failure_binario_2);
 
-T3 = readtable('tabellarisultatiRandom_CONF1_RUN_3.xlsx');
+T3 = readtable('tabellarisultatiRandom_CONF1_RUN_3_finale.xlsx');
 vettore_failure_3 = double(T3{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario_3 = zeros(1,length(vettore_failure_3));
 for i=1:length(vettore_failure_3)
@@ -32,7 +32,7 @@ end
 
 vettore_failure_binario_3 = cumsum(vettore_failure_binario_3);
 
-T4 = readtable('tabellarisultatiRandom_CONF1_RUN_4.xlsx');
+T4 = readtable('tabellarisultatiRandom_CONF1_RUN_4_finale.xlsx');
 vettore_failure_4 = double(T4{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario_4 = zeros(1,length(vettore_failure_4));
 for i=1:length(vettore_failure_4)
@@ -43,7 +43,7 @@ end
 
 vettore_failure_binario_4 = cumsum(vettore_failure_binario_4);
 
-T5 = readtable('tabellarisultatiRandom_CONF1_RUN_5.xlsx');
+T5 = readtable('tabellarisultatiRandom_CONF1_RUN_5_finale.xlsx');
 vettore_failure_5 = double(T5{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario_5 = zeros(1,length(vettore_failure_5));
 for i=1:length(vettore_failure_5)
@@ -85,7 +85,7 @@ filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWi
 savefig(filename);
 
 %% grafico sovrapposto 
-T_fitness = readtable('tabellarisultatiHecate_CONF1.xlsx');
+T_fitness = readtable('tabellarisultatiHecate_CONF1_finale.xlsx');
 vettore_failure = double(T_fitness{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -98,7 +98,7 @@ vettore_failure_binario = cumsum(vettore_failure_binario);
 
 asse_x = 1:length(vettore_failure);
 figure; 
-p=plot(asse_x, vettore_failure_binario,'r-o', asse_x, vettore_failure_medio,'g-o');
+p=plot(asse_x, vettore_failure_binario,'g-o', asse_x, vettore_failure_medio,'r-o');
 p(1).LineWidth=2;
 p(2).LineWidth=2;
 
@@ -107,7 +107,7 @@ yticks(0:1:max(vettore_failure_medio));
 
 xlabel('Simulazioni');
 ylabel('Failure');
-title('RANDOM (green) vs FITNESS (red)');
+title('FITNESS (green) vs RANDOM (red)');
 grid on;
 filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_CONFRONTO.fig');
 savefig(filename);

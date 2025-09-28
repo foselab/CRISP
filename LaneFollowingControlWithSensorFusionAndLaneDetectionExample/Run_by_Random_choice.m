@@ -3,7 +3,7 @@
 
 %% LETTURA DATI
 
-FileNameExcel = 'tabellarisultati_TEST_V9_CONF_0.xlsx'; 
+FileNameExcel = 'tabellarisultati_TEST_V9_CONF_0_finale.xlsx'; 
 [~, ~, raw] = xlsread(FileNameExcel); 
 
 % separo l'intestazione dai dati reali 
@@ -14,16 +14,16 @@ data = raw(2:end,:);
 
 modelname_simulation = 'LaneFollowingTestBenchExample';
 
-%% CREO 5 VETTORI CASUALI DA 70 ELEMENTI 
+%% CREO 5 VETTORI CASUALI DA 133 ELEMENTI 
 
 s = rng; 
 
 rng('shuffle');                             % Usa il tempo di sistema per generare una sequenza diversa ogni volta
-random_order_1 = randperm(70);
-random_order_2 = randperm(70);
-random_order_3 = randperm(70);
-random_order_4 = randperm(70);
-random_order_5 = randperm(70);
+random_order_1 = randperm(133);
+random_order_2 = randperm(133);
+random_order_3 = randperm(133);
+random_order_4 = randperm(133);
+random_order_5 = randperm(133);
 matrice_rand = [random_order_1;random_order_2;random_order_3;random_order_4;random_order_5];
 
 rng(s);
@@ -58,16 +58,15 @@ length_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
     'ACC_02_ISO_AutoRetargetTest',...                   % scenarioId = 8
     'Highway_double_target',...                         % scenarioId = 9
     'FrenataBrusca',...                                 % scenarioId = 10
-    'Ushape',...                                        % scenarioId = 11
-    'A15_LaSpezia_Parma',...                            % scenarioId = 12
-    'A26_Autostrada_Trafori',...                        % scenarioId = 13
-    'Pacific_Coast_Highway',...                         % scenarioId = 14
-    'Trans_Canada_Hwy',...                              % scenarioId = 15
-    'A8_Stoccarda_Monaco',...                           % scenarioId = 16
-    'Overseas_Hwy',...                                  % scenarioId = 17
-    'Sea_Sky_Hwy',...                                   % scenarioId = 18
-    'Queen_Elizabeth_Way_Oakville',...                  % scenarioId = 19
-    'Las_Vegas_Freeway',...                             % scenarioId = 20
+    'A15_LaSpezia_Parma',...                            % scenarioId = 11
+    'A26_Autostrada_Trafori',...                        % scenarioId = 12
+    'Pacific_Coast_Highway',...                         % scenarioId = 13
+    'Trans_Canada_Hwy',...                              % scenarioId = 14
+    'A8_Stoccarda_Monaco',...                           % scenarioId = 15
+    'Overseas_Hwy',...                                  % scenarioId = 16
+    'Sea_Sky_Hwy',...                                   % scenarioId = 17
+    'Queen_Elizabeth_Way_Oakville',...                  % scenarioId = 18
+    'Las_Vegas_Freeway',...                             % scenarioId = 19
     
         };
 
@@ -147,7 +146,7 @@ for column = 1 : 5
     Results_Table_by_Random.Total_Fault_Found = total_fault_col;
     
     % CREAZIONE TABELLA EXCEL
-    filename = sprintf('tabellarisultatiRandom_CONF1_RUN_%d.xlsx',column);
+    filename = sprintf('tabellarisultatiRandom_CONF1_RUN_%d_finale.xlsx',column);
     writetable(Results_Table_by_Random, filename);
 end
 
@@ -156,7 +155,7 @@ tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
 %% CREAZIONE GRAFICI 
 
 %grafico 1
-T = readtable('tabellarisultatiRandom_CONF1_RUN_1.xlsx');
+T = readtable('tabellarisultatiRandom_CONF1_RUN_1_finale.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -184,7 +183,7 @@ filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWi
 savefig(filename);
 
 %grafico 2
-T = readtable('tabellarisultatiRandom_CONF1_RUN_2.xlsx');
+T = readtable('tabellarisultatiRandom_CONF1_RUN_2_finale.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -212,7 +211,7 @@ filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWi
 savefig(filename);
 
 %grafico 3
-T = readtable('tabellarisultatiRandom_CONF1_RUN_3.xlsx');
+T = readtable('tabellarisultatiRandom_CONF1_RUN_3_finale.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -240,7 +239,7 @@ filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWi
 savefig(filename);
 
 %grafico 4
-T = readtable('tabellarisultatiRandom_CONF1_RUN_4.xlsx');
+T = readtable('tabellarisultatiRandom_CONF1_RUN_4_finale.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -268,7 +267,7 @@ filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWi
 savefig(filename);
 
 %grafico 5
-T = readtable('tabellarisultatiRandom_CONF1_RUN_5.xlsx');
+T = readtable('tabellarisultatiRandom_CONF1_RUN_5_finale.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
