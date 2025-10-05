@@ -14,8 +14,8 @@ function helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_ste
 assignin('base','Ts',0.1);               % Simulation sample time  (s)  
 
 %% Path following Controller Parameters 
-assignin('base','time_gap',1.5);                        % time gap               (s)
-assignin('base','default_spacing',20);                  % default spacing        (m)
+assignin('base','time_gap',0.15);                       % time gap               (s)
+assignin('base','default_spacing',10);                  % default spacing        (m)
 assignin('base','max_ac',max_acceleration);             % Maximum acceleration   (m/s^2)
 assignin('base','min_ac',min_acceleration);             % Minimum acceleration   (m/s^2)
 assignin('base','max_steer',max_steering);              % Maximum steering       (rad)

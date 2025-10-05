@@ -5,20 +5,20 @@
 
 %% ordinamento dei dati secondo la fitness di Hecate
 
-FileNameExcel = 'tabellarisultati_ACC_CONF_0_finale.xlsx'; 
+FileNameExcel = 'tabellarisultati_ACC_CONF_0.xlsx'; 
 [~, ~, raw] = xlsread(FileNameExcel); 
 
 % separo l'intestazione dai dati reali 
 header = raw(1, :); 
 data = raw(2:end,:); 
 
-% estraggo i valori contenuti nella colonna della fitness function 
+% estraggo i valori contenuti nella colonna della discontinuity 
 Discontinuity = cell2mat(data(:,5)); 
 
-% ordino le righe in base al valore contenuto nella terza colonna, quella
-% relativa alla fitness
+% ordino le righe in base al valore contenuto nella quinta colonna, quella
+% relativa alla discontinuity
 
-[~, sortIdx] = sort(Discontinuity);
+[~, sortIdx] = sort(Discontinuity,'descend');
 sorted_Table = data(sortIdx, :); 
 
 %% NOME DELLA SIMULAZIONE
@@ -89,7 +89,7 @@ for i = 1 : numero_iterazioni
     Vehicle_file_name = sorted_Table{i,2};  % leggo il nome del veicolo e 
     run(Vehicle_file_name);                 % ne eseguo il codice 
     
-    min_acceleration_CONF1 = 10/100 * min_acceleration;  
+    %min_acceleration_CONF1 = 10/100 * min_acceleration;  %CONF1
 
     Scenario_file_name = sorted_Table{i,1}; % estraggo il nome dello scenario
     
@@ -103,7 +103,7 @@ for i = 1 : numero_iterazioni
 
     % configurazione simulazione
     fprintf('CONFIGURAZIONE SIMULAZIONE\n');
-    helperLFSetUp(max_acceleration, min_acceleration_CONF1, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_file_name, scenario_id);
+    helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_file_name, scenario_id);
     fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
     
 
@@ -132,7 +132,7 @@ for i = 1 : numero_iterazioni
 
     relative_distance = Out.logsout{21}.Values.Data;
     r = diff(relative_distance);
-    discontinuityMaxValue = max(abd(r));
+    discontinuityMaxValue = max(abs(r));
 
     Results_Table_by_APDISC(i,:)={Scenario_file_name, Vehicle_file_name, fitness_simulation, Collision, discontinuityMaxValue};
 
@@ -149,13 +149,13 @@ Results_Table_by_APDISC.Total_Fault_Found = total_fault_col;
 
 %% SALVATAGGIO DATI 
 
-writetable(Results_Table_by_APDISC, 'tabellarisultatiHecate_CONF1_APDISC.xlsx');
+writetable(Results_Table_by_APDISC, 'tabellarisultati_APDISC_CONF2.xlsx');
 
 fprintf('Numero fault trovati in 133 simulazioni: %d\n', numero_casi_fail_trovati);
 
 %% CREAZIONE GRAFICO 
 
-T = readtable('tabellarisultatiHecate_CONF1_APDISC.xlsx');
+T = readtable('tabellarisultati_APDISC_CONF2.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -179,7 +179,7 @@ xlabel('Simulazioni');
 ylabel('Failure');
 title('Grafico performance APDISC');
 grid on;
-filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_APDISC.fig');
+filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_APDISC_CONF_2.fig');
 savefig(filename);
 
 

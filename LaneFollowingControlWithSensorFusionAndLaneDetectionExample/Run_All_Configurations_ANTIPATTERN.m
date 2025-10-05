@@ -68,7 +68,6 @@ for i = 1 : length_vehicles_array
     %configurazioni parametri veicolo
     run(Vehicles_Parameters{i});
     
-    min_acceleration_V9_CONFIG1 = 10/100 * min_acceleration;
     for j = 1 : length_scenarios_array       
         scenario_id = j;
         %configurazione simulazione
@@ -97,7 +96,7 @@ for i = 1 : length_vehicles_array
 
         relative_distance = Out.logsout{21}.Values.Data;
         r = diff(relative_distance);
-        discontinuityMaxValue = max(abd(r));
+        discontinuityMaxValue = max(abs(r));
 
         Results_Table(row_counter,:)={Actual_Scenario_Name, Actual_Vehicle_Name, fitness_simulation, Collision, discontinuityMaxValue};   
         row_counter = row_counter+1;
@@ -106,7 +105,7 @@ for i = 1 : length_vehicles_array
 end 
 
 % salvo i dati in un file excel 
-writetable(Results_Table, 'tabellarisultati_ACC_CONF_0_finale.xlsx');
+writetable(Results_Table, 'tabellarisultati_ACC_CONF_0.xlsx');
 
 tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
 disp(['Tempo impiegato: ', num2str(tempo_trascorso), ' secondi']);
