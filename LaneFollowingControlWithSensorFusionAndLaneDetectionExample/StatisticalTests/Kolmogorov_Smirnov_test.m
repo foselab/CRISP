@@ -134,12 +134,35 @@ for i = 1 : length(vettore_failure_binario_HECATE)
     end
 end
 
+%% table APDISC
+T_fitness = readtable('tabellarisultatiHecate_CONF1_APDISC.xlsx');
+vettore_fitness_APDISC = double(T_fitness{1:end, 3});
+
+position_vector_APDISC = [];
+
+vettore_failure_binario_APDISC = zeros(1,length(vettore_fitness_APDISC));
+for i=1:length(vettore_fitness_APDISC)
+    if(vettore_fitness_APDISC(i)<0)
+        vettore_failure_binario_APDISC(i)=1;
+    end
+end
+
+for i = 1 : length(vettore_failure_binario_APDISC)
+    j=0;
+    if(vettore_failure_binario_APDISC(i)==1)
+        position_vector_APDISC = [position_vector_APDISC, i];
+        j=j+1;
+    end
+end
+
 %% statistical test: Kolmogorov-Smirnov (test statistico eseguito per paragonare il comportamento dell'algoritmo scelto con il comportamento ottimale)
 
 position_vector_RANDOM_TOTAL = [position_vector_RANDOM_1 position_vector_RANDOM_2 position_vector_RANDOM_3 position_vector_RANDOM_4 position_vector_RANDOM_5];
 
-Nfault = length(position_vector_HECATE);
-NTotal = length(vettore_fitness_HECATE);
+x_algoritmo = position_vector_APDISC';
+
+Nfault = length(position_vector_APDISC);
+NTotal = length(vettore_fitness_APDISC);
 
 x_ottimale = [1:Nfault, NTotal]';
 F_ottimale = [(1:Nfault)/Nfault, 1]';
@@ -163,7 +186,7 @@ grid on;
 %% statistical test: Kolmogorov-Smirnov (eseguito tra le performance di Hecate e gli altri approcci)
 
 x_algoritmo = position_vector_HECATE';
-x_random = position_vector_RANDOM_1';
+x_random = position_vector_APDISC';
 
 [h, p, ks2stat] = kstest2(x_algoritmo, x_random)
 
