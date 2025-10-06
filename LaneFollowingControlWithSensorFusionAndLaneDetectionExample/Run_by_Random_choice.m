@@ -155,7 +155,7 @@ tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
 %% CREAZIONE GRAFICI 
 
 %grafico 1
-T = readtable('tabellarisultatiRandom_CONF1_RUN_1_finale.xlsx');
+T = readtable('tabellarisultati_RANDOM1_CONF_2.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -179,11 +179,11 @@ xlabel('Simulazioni');
 ylabel('Failure');
 title('Grafico performance RANDOM1');
 grid on;
-filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_random_1.fig');
+filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici\OTA2','grafico_random_1_CONF2.fig');
 savefig(filename);
 
 %grafico 2
-T = readtable('tabellarisultatiRandom_CONF1_RUN_2_finale.xlsx');
+T = readtable('tabellarisultati_RANDOM2_CONF_2.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -207,11 +207,11 @@ xlabel('Simulazioni');
 ylabel('Failure');
 title('Grafico performance RANDOM2');
 grid on;
-filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_random_2.fig');
+filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici\OTA2','grafico_random_2_CONF2.fig');
 savefig(filename);
 
 %grafico 3
-T = readtable('tabellarisultatiRandom_CONF1_RUN_3_finale.xlsx');
+T = readtable('tabellarisultati_RANDOM3_CONF_2.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -235,11 +235,11 @@ xlabel('Simulazioni');
 ylabel('Failure');
 title('Grafico performance RANDOM3');
 grid on;
-filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_random_3.fig');
+filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici\OTA2','grafico_random_3_CONF2.fig');
 savefig(filename);
 
 %grafico 4
-T = readtable('tabellarisultatiRandom_CONF1_RUN_4_finale.xlsx');
+T = readtable('tabellarisultati_RANDOM4_CONF_2.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -263,11 +263,11 @@ xlabel('Simulazioni');
 ylabel('Failure');
 title('Grafico performance RANDOM4');
 grid on;
-filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_random_4.fig');
+filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici\OTA2','grafico_random_4_CONF2.fig');
 savefig(filename);
 
 %grafico 5
-T = readtable('tabellarisultatiRandom_CONF1_RUN_5_finale.xlsx');
+T = readtable('tabellarisultati_RANDOM5_CONF_2.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -291,7 +291,7 @@ xlabel('Simulazioni');
 ylabel('Failure');
 title('Grafico performance RANDOM5');
 grid on;
-filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_random_5.fig');
+filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici\OTA2','grafico_random_5_CONF2.fig');
 savefig(filename);
 
 

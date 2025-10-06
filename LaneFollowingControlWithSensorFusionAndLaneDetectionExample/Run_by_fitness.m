@@ -5,7 +5,7 @@
 
 %% ordinamento dei dati secondo la fitness di Hecate
 
-FileNameExcel = 'tabellarisultati_TEST_V9_CONF_0_finale.xlsx'; 
+FileNameExcel = 'tabellarisultati_ACC_CONF_0_finale.xlsx'; 
 [~, ~, raw] = xlsread(FileNameExcel); 
 
 % separo l'intestazione dai dati reali 
@@ -150,7 +150,7 @@ fprintf('Numero fault trovati in 133 simulazioni: %d\n', numero_casi_fail_trovat
 
 %% CREAZIONE GRAFICO 
 
-T = readtable('tabellarisultatiHecate_CONF1_finale.xlsx');
+T = readtable('tabellarisultati_HECATE_CONF_2.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -174,7 +174,7 @@ xlabel('Simulazioni');
 ylabel('Failure');
 title('Grafico performance HECATE');
 grid on;
-filename = fullfile('C:\Users\Luca\Desktop\tesi\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_hecate_finale.fig');
+filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_hecate_CONF2.fig');
 savefig(filename);
 
 
