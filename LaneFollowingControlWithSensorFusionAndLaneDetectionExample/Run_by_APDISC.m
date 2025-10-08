@@ -149,13 +149,13 @@ Results_Table_by_APDISC.Total_Fault_Found = total_fault_col;
 
 %% SALVATAGGIO DATI 
 
-writetable(Results_Table_by_APDISC, 'tabellarisultati_APDISC_CONF2.xlsx');
+writetable(Results_Table_by_APDISC, 'tabellarisultati_APDISC_CONF3.xlsx');
 
 fprintf('Numero fault trovati in 133 simulazioni: %d\n', numero_casi_fail_trovati);
 
 %% CREAZIONE GRAFICO 
 
-T = readtable('tabellarisultati_APDISC_CONF2.xlsx');
+T = readtable('tabellarisultati_APDISC_CONF3.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
 vettore_failure_binario = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
@@ -179,7 +179,7 @@ xlabel('Simulazioni');
 ylabel('Failure');
 title('Grafico performance APDISC');
 grid on;
-filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_APDISC_CONF_2.fig');
+filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_APDISC_CONF_3.fig');
 savefig(filename);
 
 
