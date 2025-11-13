@@ -1,12 +1,10 @@
- %% INTRODUZIONE
-% QUESTO FILE SERVE PER ANDARE A RUNNARE IN UN CICLO TUTTE LE POSSIBILI
-% COMBINAZIONI TRA AUTOMOBILI, SCENARI E COMPONENTISTICA DISPONIBILE.
+%% INTRODUCTION
+% THIS FILE IS USED TO RUN ALL POSSIBLE
+% COMBINATIONS OF CARS, SCENARIOS, AND AVAILABLE COMPONENTS IN A SINGLE CYCLE.
 
 modelname_simulation = 'LaneFollowingTestBenchExample';
 
-%% ELENCO AUTOMOBILI DISPONIBILI (organizzato in un vettore di celle) 
-% IMPORTANTE!! ogni volta che si crea un nuovo veicolo bisogna inserire il
-% nome del file all'interno di questo array
+%% LIST OF AVAILABLE VEHICLES (organized in a cell vector)
 
 Vehicles_Parameters = {
     'Malibu.m',...          % VehicleId = 1
@@ -19,11 +17,9 @@ Vehicles_Parameters = {
     
     };
 
-length_vehicles_array = length(Vehicles_Parameters);             %lunghezza array veicoli
+length_vehicles_array = length(Vehicles_Parameters);          
 
-%% ELENCO POSSIBILI SCENARI (organizzato in un vettore di celle)
-% quando si aggiunge un nuovo scenario, nel file di setup bisogna inserire
-% il tempo di simulazione e la velocità dell'ego vehicle 
+%% LIST OF AVAILABLE SCENARIOS (organized in a cell vector) 
 
   Scenario_Array_validi = {
     'curvaLunga',...                                    % scenarioId = 1
@@ -48,9 +44,9 @@ length_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
     
         };
 
-length_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi
+length_scenarios_array = length(Scenario_Array_validi);     
 
-%% CREAZIONE TABELLA VUOTA, CONFIGURATA PER CONTENERE I VALORI DI OGNI CONFIGURAZIONE
+%% CREATION OF A EMPTY TABLE, CONFIGURED TO CONTAIN THE VALUES OF EACH CONFIGURATION 
 rows = length_scenarios_array * length_vehicles_array;
 sz = [rows 5];
 varTypes = ["string", "string", "double", "logical","double"];
@@ -58,45 +54,45 @@ varNames = ["Scenario", "Vehicle", "Fitness_Hecate", "Collision","Discontinuity"
 
 Results_Table = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
-%% FUNZIONE CICLICA CHE VA A RUNNARE TUTTE LE POSSIBILI CONFIGURAZIONI
-tic;  % Inizia il timer
+%% CYCLIC FUNCTION THAT GOES TO RUN ALL POSSIBLE CONFIGURATIONS
+tic;  % start timer
 row_counter = 1;
 
 
 for i = 1 : length_vehicles_array
 
-    %configurazioni parametri veicolo
+    %vehicle parameter configuration
     run(Vehicles_Parameters{i});
     
     for j = 1 : length_scenarios_array       
         scenario_id = j;
-        %configurazione simulazione
+        %simulation configuration
         fprintf('CONFIGURAZIONE SIMULAZIONE\n');
         helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_Array_validi{j}, scenario_id);
         fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
 
-        %configurazione fitness function hecate
+        %fitness function hecate configuration
         fprintf('CONFIGURAZIONE HECATE\n'); 
         run("hecate\testComandi.m");                        
         fprintf('HECATE CORRETTAMENTE CONFIGURATO\n');
 
-        %run simulazione
+        %run simulation
         fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_Array_validi{j}, Vehicles_Parameters{i});
         [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
         fprintf('SIMULAZIONE CONCLUSA \n');
 
-        %salvataggio dati simulazione
+        %saving data
         fprintf('SALVATAGGIO DATI\n');
         Actual_Scenario_Name = Scenario_Array_validi{j};    
         Actual_Vehicle_Name = Vehicles_Parameters{i};
         fit_values = Out.logsout{6}.Values.Data; 
-        fitness_simulation = fit_values(end);  %estraggo valore fitness
+        fitness_simulation = fit_values(end);  %fitness value
         Collision_values = Out.logsout{1}.Values.Data;
         Collision = Collision_values(end);
 
         relative_distance = Out.logsout{21}.Values.Data;
         r = diff(relative_distance);
-        discontinuityMaxValue = max(abs(r));
+        discontinuityMaxValue = max(abs(r)); %discontinuity value
 
         Results_Table(row_counter,:)={Actual_Scenario_Name, Actual_Vehicle_Name, fitness_simulation, Collision, discontinuityMaxValue};   
         row_counter = row_counter+1;
@@ -104,10 +100,10 @@ for i = 1 : length_vehicles_array
 
 end 
 
-% salvo i dati in un file excel 
+% SAVING DATA in excel table 
 writetable(Results_Table, 'tabellarisultati_ACC_CONF_0.xlsx');
 
-tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
+tempo_trascorso = toc;  % stop timer
 disp(['Tempo impiegato: ', num2str(tempo_trascorso), ' secondi']);
 
 

@@ -1,7 +1,7 @@
-%% IN QUESTO FILE PRENDIAMO I RISULTATI FORNITI DALLA SIMULAZIONE DI PARTENZA E RIESEGUIAMO LE 
-%% SIMULAZIONI TENENDO CONTO DEL RISULTATO OTTENUTO DALLA FUNZIONE FITNESS
-% in questo modo possiamo eseguire le simulazioni per la nuova
-% configurazione basando l'ordine sul valore delle funzioni fitness
+%% IN THIS FILE WE TAKE THE RESULTS PROVIDED BY THE STARTING SIMULATION AND RE-RUN THE SIMULATIONS IN 
+%% THE ORDER SUGGESTED BY THE FITNESS VALUE
+% This way we can run simulations for the new
+% configuration basing the order on the value of the fitness functions
 
 %% ordinamento dei dati secondo la fitness di Hecate
 
@@ -21,14 +21,11 @@ Fitness_Hecate = cell2mat(data(:,3));
 [~, sortIdx] = sort(Fitness_Hecate);
 sorted_Table = data(sortIdx, :); 
 
-%% NOME DELLA SIMULAZIONE
+%% NAME OF THE SIMULATION MODEL
 
 modelname_simulation = 'LaneFollowingTestBenchExample';
                                                                         
-%% ELENCO AUTOMOBILI DISPONIBILI (organizzato in un vettore di celle) 
-% IMPORTANTE!! ogni volta che si crea un nuovo veicolo bisogna inserire il
-% nome del file all'interno di questo array
-
+%% LIST OF AVAILABLE VEHICLES (organized in a cell vector)
 Vehicles_Parameters = {
     'Malibu.m',...          % VehicleId = 1
     'Panda.m',...           % VehicleId = 2
@@ -40,9 +37,9 @@ Vehicles_Parameters = {
     
     };
 
-length_vehicles_array = length(Vehicles_Parameters);             %lunghezza array veicoli
+length_vehicles_array = length(Vehicles_Parameters);          
 
-%% ELENCO POSSIBILI SCENARI (organizzato in un vettore di celle)
+%% LIST OF AVAILABLE SCENARIOS (organized in a cell vector)
 
   Scenario_Array_validi = {
     'curvaLunga',...                                    % scenarioId = 1
@@ -67,9 +64,9 @@ length_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
     
         };
 
-length_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi
+length_scenarios_array = length(Scenario_Array_validi);          
 
-%% CREAZIONE TABELLA VUOTA, CONFIGURATA PER CONTENERE I VALORI DI OGNI CONFIGURAZIONE
+%% CREATION OF A EMPTY TABLE, CONFIGURED TO CONTAIN THE VALUES OF EACH CONFIGURATION
 rows = length_scenarios_array * length_vehicles_array;
 sz = [rows 4];
 varTypes = ["string", "string", "double", "logical"];
@@ -78,22 +75,22 @@ varNames = ["Scenario", "Vehicle", "Fitness_Hecate", "Collision"];
 Results_Table_by_Fitness = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
 
-%% SIMULAZIONE 
-tic;  % Inizia il timer
+%% START OF SIMULATION 
+tic;  % start of timer
 numero_casi_fail_trovati = 0; 
 
-numero_iterazioni = size(sorted_Table,1); % il numero di iterazioni da eseguire corrisponde al numero di righe della tabella riordinata
+numero_iterazioni = size(sorted_Table,1); % the number of iterations to be performed must match the number of rows in the reordered table
 
  
 for i = 1 : numero_iterazioni
-    Vehicle_file_name = sorted_Table{i,2};  % leggo il nome del veicolo e 
-    run(Vehicle_file_name);                 % ne eseguo il codice 
+    Vehicle_file_name = sorted_Table{i,2};  % vehicle name extraction 
+    run(Vehicle_file_name);                 % run the code of the vehicle 
     
     min_acceleration_V9_CONFIG1_fitness = 10/100 * min_acceleration;  
 
-    Scenario_file_name = sorted_Table{i,1}; % estraggo il nome dello scenario
+    Scenario_file_name = sorted_Table{i,1}; % scenario name extraction
     
-    % questo ciclo for mi serve per estrarre l'id dello scenario 
+    % scenario id extraction 
     for j = 1 : length_scenarios_array
         if(strcmp(Scenario_Array_validi{j},Scenario_file_name))
             scenario_id = j;
@@ -101,24 +98,24 @@ for i = 1 : numero_iterazioni
         end
     end
 
-    % configurazione simulazione
+    % sim configuration
     fprintf('CONFIGURAZIONE SIMULAZIONE\n');
     helperLFSetUp(max_acceleration, min_acceleration_V9_CONFIG1_fitness, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_file_name, scenario_id);
     fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
     
 
-    % configurazione fitness function hecate
+    % fitness function hecate configuration
     fprintf('CONFIGURAZIONE HECATE\n'); 
     run("hecate\testComandi.m");                        
     fprintf('HECATE CORRETTAMENTE CONFIGURATO\n');
 
-    %run simulazione
+    %run simulation
     fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_file_name, Vehicle_file_name);
     [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
     fprintf('SIMULAZIONE CONCLUSA \n');
 
         
-    %salvataggio dati simulazione
+    %saving data
     fprintf('SALVATAGGIO DATI\n');
     fit_values = Out.logsout{6}.Values.Data;
     fitness_simulation = fit_values(end);
@@ -134,21 +131,21 @@ for i = 1 : numero_iterazioni
         
 end
 
-tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
+tempo_trascorso = toc;  % stop timer
 
-%% AGGIUNTA COLONNA "Total_Fault_Found"
+%% "TOTAL_FAULT_FOUND" column addition
 
 total_fault_col = NaN(height(Results_Table_by_Fitness), 1);
 total_fault_col(1) = numero_casi_fail_trovati;
 Results_Table_by_Fitness.Total_Fault_Found = total_fault_col;
 
-%% SALVATAGGIO DATI 
+%% SAVING DATA 
 
 writetable(Results_Table_by_Fitness, 'tabellarisultatiHecate_CONF1_finale.xlsx');
 
 fprintf('Numero fault trovati in 133 simulazioni: %d\n', numero_casi_fail_trovati);
 
-%% CREAZIONE GRAFICO 
+%% CREATION OF THE GRAPH
 
 T = readtable('tabellarisultati_HECATE_CONF_2.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione

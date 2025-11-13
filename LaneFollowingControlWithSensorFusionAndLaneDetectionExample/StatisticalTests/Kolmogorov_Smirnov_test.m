@@ -155,33 +155,6 @@ for i = 1 : length(vettore_failure_binario_APDISC)
     end
 end
 
-%% statistical test: Kolmogorov-Smirnov (test statistico eseguito per paragonare il comportamento dell'algoritmo scelto con il comportamento ottimale)
-
-
-
-% x_algoritmo = position_vector_HECATE';
-% 
-% Nfault = length(position_vector_HECATE);
-% NTotal = length(vettore_fitness_HECATE);
-% 
-% x_ottimale = [1:Nfault, NTotal]';
-% F_ottimale = [(1:Nfault)/Nfault, 1]';
-% 
-% CDF_ottimale = [x_ottimale, F_ottimale];
-% 
-% [h, p, ksstat] = kstest(x_algoritmo, 'CDF', CDF_ottimale)
-% 
-% figure;
-% [F_alg, x_ecdf] = ecdf(x_algoritmo); % Calcola la CDF empirica del tuo algoritmo
-% stairs(x_ecdf, F_alg, 'b', 'LineWidth', 2);
-% hold on;
-% stairs(CDF_ottimale(:,1), CDF_ottimale(:,2), 'r--', 'LineWidth', 2);
-% title('Confronto CDF: Algoritmo (Empirica) vs. Ottimale (Teorica)');
-% xlabel('Numero di Simulazione');
-% ylabel('Proporzione Cumulativa di Fault Trovati');
-% legend('Algoritmo (F_{alg})', 'Ottimale (F_{ott})', 'Location', 'southeast');
-% grid on;
-% 
 
 %% statistical test: Kolmogorov-Smirnov (eseguito tra le performance di Hecate e gli altri approcci)
 
