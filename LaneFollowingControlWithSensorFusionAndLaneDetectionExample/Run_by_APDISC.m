@@ -1,22 +1,22 @@
 %% IN THIS FILE WE TAKE THE RESULTS PROVIDED BY THE STARTING SIMULATION AND RE-RUN THE SIMULATIONS IN 
-%% THE ORDER SUGGESTED BY APDIS
+%% THE ORDER SUGGESTED BY APDISC
 % This way we can run simulations for the new
 % configuration basing the order on the discontinuity value
 
-%% ordinamento dei dati secondo la discontinuity
+%% sorting data according to discontinuity
 
 FileNameExcel = 'tabellarisultati_ACC_CONF_0.xlsx'; 
 [~, ~, raw] = xlsread(FileNameExcel); 
 
-% separo l'intestazione dai dati reali 
+% separate the header from the actual data 
 header = raw(1, :); 
 data = raw(2:end,:); 
 
-% estraggo i valori contenuti nella colonna della discontinuity 
+% extract the values ​​contained in the discontinuity function column 
 Discontinuity = cell2mat(data(:,5)); 
 
-% ordino le righe in base al valore contenuto nella quinta colonna, quella
-% relativa alla discontinuity
+% order the rows based on the value contained in the third column, the one
+% relating to discontinuity
 
 [~, sortIdx] = sort(Discontinuity,'descend');
 sorted_Table = data(sortIdx, :); 

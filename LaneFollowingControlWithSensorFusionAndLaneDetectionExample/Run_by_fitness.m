@@ -3,20 +3,19 @@
 % This way we can run simulations for the new
 % configuration basing the order on the value of the fitness functions
 
-%% ordinamento dei dati secondo la fitness di Hecate
+%% sorting data according to Hecate's fitness
 
 FileNameExcel = 'tabellarisultati_ACC_CONF_0_finale.xlsx'; 
 [~, ~, raw] = xlsread(FileNameExcel); 
 
-% separo l'intestazione dai dati reali 
+% separate the header from the actual data 
 header = raw(1, :); 
 data = raw(2:end,:); 
 
-% estraggo i valori contenuti nella colonna della fitness function 
+% extract the values ​​contained in the fitness function column 
 Fitness_Hecate = cell2mat(data(:,3)); 
 
-% ordino le righe in base al valore contenuto nella terza colonna, quella
-% relativa alla fitness
+% order the rows based on the value contained in the third column, the one relating to fitness
 
 [~, sortIdx] = sort(Fitness_Hecate);
 sorted_Table = data(sortIdx, :); 
