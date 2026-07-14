@@ -46,7 +46,20 @@ vettore_failure_apdisc_LKA_OTA_3= double(T2{1:end, 2}); % estraggo la colonna de
 %% VETTORE COMPLETO
 vettore_failure_hecate =[vettore_failure_hecate_ACC_OTA_1' vettore_failure_hecate_ACC_OTA_2' vettore_failure_hecate_LKA_OTA_1' vettore_failure_hecate_LKA_OTA_2' vettore_failure_hecate_LKA_OTA_3'];
 vettore_failure_apdisc =[vettore_failure_apdisc_ACC_OTA_1' vettore_failure_apdisc_ACC_OTA_2' vettore_failure_apdisc_LKA_OTA_1' vettore_failure_apdisc_LKA_OTA_2' vettore_failure_apdisc_LKA_OTA_3'];
+
+min_hecate = min(vettore_failure_hecate);
+max_hecate = max(vettore_failure_hecate);
+std_hecate = std(vettore_failure_hecate);
+
+min_APDISC = min(vettore_failure_apdisc);
+max_APDISC = max(vettore_failure_apdisc);
+std_APDISC = std(vettore_failure_apdisc);
+
 vettore_failure_random = readmatrix('vettore_medio_random_complessivo.xlsx');
+
+min_RANDOM = min(vettore_failure_random);
+max_RANDOM = max(vettore_failure_random);
+std_RANDOM = std(vettore_failure_random);
 
 %% BOX PLOT
 MATRICE = [vettore_failure_hecate',vettore_failure_apdisc',vettore_failure_random'];

@@ -4,9 +4,9 @@ tic;  % star timer
 % parameter configuration, enter the car file name and the scenario file name 
 modelname_simulation = 'LaneFollowingTestBenchExample';
 fprintf('INIZIO CONFIGURAZIONE PARAMETRI AUTO E SCENARIO\n');
-VEHICLE_NAME = 'Malibu.m'; 
-SCENARIO_NAME = 'Las_Vegas_Freeway';
-id_scenario = 19;  % remember to change also this number (you can find the correct number in the HELPERLFSETUP file)
+VEHICLE_NAME = 'Colorado.m'; 
+SCENARIO_NAME = 'A15_LaSpezia_Parma';
+id_scenario = 11;  % remember to change also this number (you can find the correct number in the HELPERLFSETUP file)
 run(VEHICLE_NAME);
 fprintf('PARAMETRI CORRETTAMENTE CONFIGURATI\n');
 
