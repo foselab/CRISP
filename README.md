@@ -57,25 +57,16 @@ Run_by_fitness;
 > [!NOTE]
 > The same commands are present within the 'LaneFollowingControlWithSensorFusionAndLaneDetectionLKA' folder for testing the LKA's behavior.
 
+## Introduction of OTA update
 
+Here is an example example of how to introduce an over-the-air update:
 
-
-
-
-
-
-
-### Introduction of OTA update
-
-
-
-example of how to introduce an over-the-air update:
-
-
-
-* open the file helperLFSetUp.m
-* change the parameter that you want to test (example line 20: min\_acceleration --> min\_acceleration\*0.1)
-* test the update using the Run\_by\_fitness command
+* open the file `helperLFSetUp.m` within the desired folder (ACC or LKA)
+* change the parameter that you want to test within the command `assignin` (example line 20: `min_acceleration` --> `min_acceleration*0.1`)
+* test the update using the command
+```
+Run_by_fitness;
+```
 
 
 
