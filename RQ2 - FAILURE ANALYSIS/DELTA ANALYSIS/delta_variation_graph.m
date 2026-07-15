@@ -1,7 +1,7 @@
 %% PERCENTAGE OF FAULT DETECTED FUNCTION OF DELTA VARIATIONS 
-%estraggo i dati dalla tabella
+% extract data from table
 T1 = readtable('variazione_delta_complessiva.xlsx');
-vettore_percentuale_fault = double(T1{1:end, 8}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
+vettore_percentuale_fault = double(T1{1:end, 8});
 vettore_delta =double(T1{1:end, 10});
 figure;
 plot(vettore_delta,vettore_percentuale_fault,LineWidth=1.5,Marker="o");

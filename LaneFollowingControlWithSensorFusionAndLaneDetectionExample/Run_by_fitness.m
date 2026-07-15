@@ -5,7 +5,7 @@
 
 %% sorting data according to Hecate's fitness
 
-FileNameExcel = 'tabellarisultati_ACC_CONF_0_finale.xlsx'; 
+FileNameExcel = 'table_ACC_CONF_0.xlsx'; 
 [~, ~, raw] = xlsread(FileNameExcel); 
 
 % separate the header from the actual data 
@@ -98,24 +98,24 @@ for i = 1 : numero_iterazioni
     end
 
     % sim configuration
-    fprintf('CONFIGURAZIONE SIMULAZIONE\n');
+    fprintf('CONFIGURATION SIM\n');
     helperLFSetUp(max_acceleration, min_acceleration_V9_CONFIG1_fitness, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_file_name, scenario_id);
-    fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
+    fprintf('SIM CONFIGURATED\n');
     
 
     % fitness function hecate configuration
-    fprintf('CONFIGURAZIONE HECATE\n'); 
+    fprintf('CONFIGURATION HECATE\n'); 
     run("hecate\testComandi.m");                        
-    fprintf('HECATE CORRETTAMENTE CONFIGURATO\n');
+    fprintf('HECATE CONFIGURATED\n');
 
     %run simulation
     fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_file_name, Vehicle_file_name);
     [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
-    fprintf('SIMULAZIONE CONCLUSA \n');
+    fprintf('END SIMULATION \n');
 
         
     %saving data
-    fprintf('SALVATAGGIO DATI\n');
+    fprintf('SAVING DATA\n');
     fit_values = Out.logsout{6}.Values.Data;
     fitness_simulation = fit_values(end);
 
@@ -142,7 +142,7 @@ Results_Table_by_Fitness.Total_Fault_Found = total_fault_col;
 
 writetable(Results_Table_by_Fitness, 'tabellarisultatiHecate_CONF1_finale.xlsx');
 
-fprintf('Numero fault trovati in 133 simulazioni: %d\n', numero_casi_fail_trovati);
+fprintf('Number of faults detected in 133 simulations: %d\n', numero_casi_fail_trovati);
 
 %% CREATION OF THE GRAPH
 

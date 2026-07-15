@@ -26,7 +26,7 @@ A12 = U_A / (m * n);
 A12_CORRETTO = 1-A12;
 
 % print results
-fprintf('La statistica A12 (probabilità che A < B) è (ACC OTA 1): %.4f\n', A12_CORRETTO);
+fprintf('The statistic A12 (probability that A < B) is (ACC OTA 1): %.4f\n', A12_CORRETTO);
 
 %% ACC OTA 2
 
@@ -55,7 +55,7 @@ A12 = U_A / (m * n);
 A12_CORRETTO = 1-A12;
 
 % print results
-fprintf('La statistica A12 (probabilità che A < B) è (ACC OTA 2): %.4f\n', A12_CORRETTO);
+fprintf('The statistic A12 (probability that A < B) is  (ACC OTA 2): %.4f\n', A12_CORRETTO);
 
 %% LKA OTA 1
 
@@ -85,7 +85,7 @@ A12 = U_A / (m * n);
 A12_CORRETTO = 1-A12;
 
 % print results
-fprintf('La statistica A12 (probabilità che A < B) è (LKA OTA 1): %.4f\n', A12_CORRETTO);
+fprintf('The statistic A12 (probability that A < B) is (LKA OTA 1): %.4f\n', A12_CORRETTO);
 
 %% LKA OTA 2
 
@@ -115,7 +115,7 @@ A12 = U_A / (m * n);
 A12_CORRETTO = 1-A12;
 
 % print results
-fprintf('La statistica A12 (probabilità che A < B) è (LKA OTA 2): %.4f\n', A12_CORRETTO);
+fprintf('The statistic A12 (probability that A < B) is (LKA OTA 2): %.4f\n', A12_CORRETTO);
 
 %% LKA OTA 3
 
@@ -145,4 +145,4 @@ A12 = U_A / (m * n);
 A12_CORRETTO = 1-A12;
 
 % print results
-fprintf('La statistica A12 (probabilità che A < B) è (LKA OTA 3): %.4f\n', A12_CORRETTO);
+fprintf('The statistic A12 (probability that A < B) is (LKA OTA 3): %.4f\n', A12_CORRETTO);

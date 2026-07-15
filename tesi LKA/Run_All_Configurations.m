@@ -1,12 +1,10 @@
- %% INTRODUZIONE
-% QUESTO FILE SERVE PER ANDARE A RUNNARE IN UN CICLO TUTTE LE POSSIBILI
-% COMBINAZIONI TRA AUTOMOBILI, SCENARI E COMPONENTISTICA DISPONIBILE.
+%% INTRODUCTION
+% THIS FILE IS USED TO RUN ALL POSSIBLE
+% COMBINATIONS OF CARS, SCENARIOS, AND AVAILABLE COMPONENTS IN A SINGLE CYCLE.
 
 modelname_simulation = 'LaneFollowingTestBenchExample';
 
-%% ELENCO AUTOMOBILI DISPONIBILI (organizzato in un vettore di celle) 
-% IMPORTANTE!! ogni volta che si crea un nuovo veicolo bisogna inserire il
-% nome del file all'interno di questo array
+%% LIST OF AVAILABLE VEHICLES (organized in a cell vector)
 
 Vehicles_Parameters = {
     'Malibu.m',...          % VehicleId = 1
@@ -21,9 +19,7 @@ Vehicles_Parameters = {
 
 length_vehicles_array = length(Vehicles_Parameters);             %lunghezza array veicoli
 
-%% ELENCO POSSIBILI SCENARI (organizzato in un vettore di celle)
-% quando si aggiunge un nuovo scenario, nel file di setup bisogna inserire
-% il tempo di simulazione e la velocità dell'ego vehicle 
+%% LIST OF AVAILABLE SCENARIOS (organized in a cell vector)
 
   Scenario_Array_validi = {
     'LFACC_01_DoubleCurve_DecelTarget',...              % scenarioId = 1
@@ -43,7 +39,7 @@ length_vehicles_array = length(Vehicles_Parameters);             %lunghezza arra
 
 length_scenarios_array = length(Scenario_Array_validi);          %lunghezza array scenari validi
 
-%% CREAZIONE TABELLA VUOTA, CONFIGURATA PER CONTENERE I VALORI DI OGNI CONFIGURAZIONE
+%% CREATION OF A EMPTY TABLE, CONFIGURED TO CONTAIN THE VALUES OF EACH CONFIGURATION 
 rows = length_scenarios_array * length_vehicles_array;
 sz = [rows 4];
 varTypes = ["string", "string", "double", "logical"];
@@ -51,35 +47,35 @@ varNames = ["Scenario", "Vehicle", "Fitness_Hecate", "Collision"];
 
 Results_Table = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
-%% FUNZIONE CICLICA CHE VA A RUNNARE TUTTE LE POSSIBILI CONFIGURAZIONI
+%% CYCLIC FUNCTION THAT GOES TO RUN ALL POSSIBLE CONFIGURATIONS
 tic;  % Inizia il timer
 row_counter = 1;
 
 
 for i = 1 : length_vehicles_array
 
-    %configurazioni parametri veicolo
+   %vehicle parameter configuration
     run(Vehicles_Parameters{i});
     
     for j = 1 : length_scenarios_array       
         scenario_id = j;
-        %configurazione simulazione
-        fprintf('CONFIGURAZIONE SIMULAZIONE\n');
+        
+        fprintf('CONFIGURATION SIM\n');
         helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_Array_validi{j}, scenario_id);
-        fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
+        fprintf('SIM CONFIGURATED\n');
 
-        %configurazione fitness function hecate
-        fprintf('CONFIGURAZIONE HECATE\n'); 
+        
+        fprintf('CONFIGURATION HECATE\n'); 
         run("hecate\testComandi.m");                        
-        fprintf('HECATE CORRETTAMENTE CONFIGURATO\n');
+        fprintf('HECATE CONFIGURATED\n');
 
-        %run simulazione
+        
         fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_Array_validi{j}, Vehicles_Parameters{i});
         [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
-        fprintf('SIMULAZIONE CONCLUSA \n');
+        fprintf('END SIMULATION \n');
 
-        %salvataggio dati simulazione
-        fprintf('SALVATAGGIO DATI\n');
+        
+        fprintf('SAVING DATA\n');
         Actual_Scenario_Name = Scenario_Array_validi{j};    
         Actual_Vehicle_Name = Vehicles_Parameters{i};
         fit_values = Out.logsout{6}.Values.Data; 
@@ -92,10 +88,10 @@ for i = 1 : length_vehicles_array
 
 end 
 
-% salvo i dati in un file excel 
-writetable(Results_Table, 'tabellarisultati_LKA_CONF_0.xlsx');
+ 
+writetable(Results_Table, 'table_LKA_CONF_0.xlsx');
 
-tempo_trascorso = toc;  % Ferma il timer e salva il tempo trascorso
-disp(['Tempo impiegato: ', num2str(tempo_trascorso), ' secondi']);
+tempo_trascorso = toc;  
+disp(['Time required: ', num2str(tempo_trascorso), ' seconds']);
 
 

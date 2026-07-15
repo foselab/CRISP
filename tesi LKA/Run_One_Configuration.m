@@ -3,25 +3,25 @@
 tic;  % start timer
 % parameter configuration, enter the car file name and the scenario file name 
 modelname_simulation = 'LaneFollowingTestBenchExample';
-fprintf('INIZIO CONFIGURAZIONE PARAMETRI AUTO E SCENARIO\n');
+fprintf('START CONFIGURATION PARAMETERS VEHICLES AND SCENARIO\n');
 VEHICLE_NAME = 'Malibu.m'; 
 SCENARIO_NAME = 'I_81_Hwy';
 id_scenario = 13;  % remember to change also this number (you can find the correct number in the HELPERLFSETUP file)
 run(VEHICLE_NAME);
-fprintf('PARAMETRI CORRETTAMENTE CONFIGURATI\n');
+fprintf('DONE\n');
 
 %HECATE configuration
-fprintf('CONFIGURAZIONE HECATE\n');
+fprintf('CONFIGURATION HECATE\n');
 run("hecate\testComandi.m");
-fprintf('HECATE CONFIGURATO CORRETTAMENTE\n');
+fprintf('HECATE CONFIGURATED\n');
 
 %start simulation
-fprintf('INIZIO SIMULAZIONE\n');
+fprintf('START SIMULATION\n');
 min_steering_CONF1 = min_steering*10/100; %OTA
 max_steering_CONF1 = max_steering*10/100; %OTA
 helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, SCENARIO_NAME, id_scenario);
 [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
-fprintf('SIMULAZIONE CONCLUSA\n');
+fprintf('END SIMULATION\n');
 
 %print results 
 plotLFResults(Out.logsout, time_gap, default_spacing);
@@ -31,11 +31,11 @@ fit_values = Out.logsout{6}.Values.Data;
 fitness_simulation = fit_values(end);
 Collision_values = Out.logsout{1}.Values.Data;
 Collision = Collision_values(end);
-fprintf('DATI SALVATI CORRETTAMENTE\n');
+fprintf('DATA SAVED\n');
 
 %print simulation result on screen
-fprintf('LA SIMULAZIONE ESEGUITA HA OTTENUTO UN VALORE DI FITNESS: %d\n', fitness_simulation);
+fprintf('FITNESS OBTAINES: %d\n', fitness_simulation);
 
 tempo_trascorso = toc;  % stop timer
-disp(['Tempo impiegato: ', num2str(tempo_trascorso), ' secondi']);
-fprintf("Collisione avvenuta: %d\n", Collision);
+disp(['Time required: ', num2str(tempo_trascorso), ' seconds']);
+fprintf("Collision?: %d\n", Collision);

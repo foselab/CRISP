@@ -5,7 +5,7 @@
 
 %% sorting data according to Hecate's fitness
 
-FileNameExcel = 'tabellarisultati_LKA_CONF_0.xlsx'; 
+FileNameExcel = 'table_LKA_CONF_0.xlsx'; 
 [~, ~, raw] = xlsread(FileNameExcel); 
 
 % separate the header from the actual data 
@@ -25,8 +25,7 @@ sorted_Table = data(sortIdx, :);
 modelname_simulation = 'LaneFollowingTestBenchExample';
                                                                         
 %% LIST OF AVAILABLE VEHICLES (organized in a cell vector) 
-% IMPORTANTE!! ogni volta che si crea un nuovo veicolo bisogna inserire il
-% nome del file all'interno di questo array
+
 
 Vehicles_Parameters = {
     'Malibu.m',...          % VehicleId = 1
