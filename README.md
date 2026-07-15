@@ -81,16 +81,25 @@ The folder `Statistical tests` contains the results of the prioritization techni
 > [!NOTE]
 > Before running all the test be sure to load the data of the simulation perfomed by running the command: `load_data_CRISP_approach;load_data_APDISC_approach; load_data_random_approach;`
 
+To run the A12 statistical test run the command: 
+```
+TEST_A12;
+```
 
+To run the Kolmogorov-smirnov statistical test run the command:
+```
+KS_statistical_test;
+```
 
-To run the A12 statistical test run the command: TEST\_A12;
+To run the APFD test run the command: 
+```
+APFD_CRISP;
+```
 
-To run the kolmogorov-smirnov statistical test run the command KS\_statistical\_test;
-
-To run the APFD test run the command: APFD\_CRISP;
-
-To generate the box plot results run the command: Box\_plot;
-
+To generate the box plot results run the command: 
+```
+Box_plot;
+```
 
 
 ### Results RQ2
