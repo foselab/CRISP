@@ -31,19 +31,19 @@ After having added to the active path the necessary folders, navigate into the `
 
 To open the Simulink model, run the following command: 
 ```
-open\_system('LaneFollowingTestBenchExample');
+open_system('LaneFollowingTestBenchExample');
 ```
 
 Note that it is important to open the simulink model before running the next commands, otherwise they will not work.
 
 To run all the simulations of the case study, run the following command: 
 ```
-Run\_All\_Configurations;
+Run_All_Configurations;
 ```
 
 To run only one simulation of the case study (select the vehicle name and the scenario name inside the script), run the following command: 
 ```
-Run\_One\_Configuration;
+Run_One_Configuration;
 ```
 
 All vehicles and scenario names can be found in the `helperLFSetUp.m` file script.
@@ -51,7 +51,7 @@ All vehicles and scenario names can be found in the `helperLFSetUp.m` file scrip
 
 To run all the simulations of the automotive SPL case study, in the order proposed by CRISP, run the following command: 
 ```
-Run\_by\_fitness;
+Run_by_fitness;
 ```
 
 > [!NOTE]
