@@ -2,7 +2,7 @@
 
 This repository contains the necessary files to replicate the analysis exposed in the papaer *Safety Analysis of Over-the-air Updates for CPS: An Approach for test case prioritizazion and Selection*.
 
-### Repository Structure
+## Repository Structure
 
 This repository contains 4 folders:
 
@@ -11,69 +11,57 @@ This repository contains 4 folders:
 * `Statistical tests`: it contains the scripts to run the statistical tests and generate the results of RQ1
 * `Failure analisys`: it contains the scripts to run the failure analysis and generate the results of RQ2
 
-
-
-&#x20;
-
-### Requirements
-
-
+## Requirements
 
 To run the script and be able to open the Simulink models, ensure the following software is installed:
 
-
-
 * MATLAB version R2024a or newer and the following Add-Ons:
+    - Simulink
+    - Simulink Test
+    - Automated Driving Toolbox
+    - Embedded Coder
+    - Model Predictive Control Toolbox
+    - Simulink 3D Animation
 
-&#x09;- Simulink
+* HECATE (follow the intructions written in the [tool repo](https://github.com/Hecate-SBST/Hecate/tree/main))
 
-&#x09;- Simulink Test
+## How to run
 
-&#x09;- Automated Driving Toolbox
+After having added to the active path the necessary folders, navigate into the `LaneFollowingControlWithSensorFusionAndLaneDetectionACC` folder in order to perform the ACC controller simulations.
 
-&#x09;- Embedded Coder
+To open the Simulink model, run the following command: 
+```
+open\_system('LaneFollowingTestBenchExample');
+```
 
-&#x09;- Model Predictive Control Toolbox
+Note that it is important to open the simulink model before running the next commands, otherwise they will not work.
 
-&#x09;- Simulink 3D Animation
+To run all the simulations of the case study, run the following command: 
+```
+Run\_All\_Configurations;
+```
 
-* HECATE (follow the intructions written in the tool repo)
+To run only one simulation of the case study (select the vehicle name and the scenario name inside the script), run the following command: 
+```
+Run\_One\_Configuration;
+```
 
-
-
-
-
-### How to run
-
-
-
-after adding to the active path the necessary folders, navigate into the LaneFollowingControlWithSensorFusionAndLaneDetectionExample folder in order to simulate the ACC controller simulations.
-
-
-
-To open the simulink model run the following command: open\_system('LaneFollowingTestBenchExample');
-
-It is important to open the simulink model before running the next commands, otherwise they will not work.
-
-
-
-To run all the simulations of the case study, run the following command: Run\_All\_Configurations;
+All vehicles and scenario names can be found in the `helperLFSetUp.m` file script.
 
 
+To run all the simulations of the automotive SPL case study, in the order proposed by CRISP, run the following command: 
+```
+Run\_by\_fitness;
+```
 
-To run only one simulation of the case study (select the vahicle name and the scenario name inside the script), run the following command: Run\_One\_Configuration;
-
-All the vehicles names and the Scenario names can be found in the 'helperLFSetUp.m' file script.
-
-
-
-To run all the simulations of the case study, in the order proposed by CRISP, run the following command: Run\_by\_fitness;
+> [!NOTE]
+> The same commands are present within the 'LaneFollowingControlWithSensorFusionAndLaneDetectionLKA' folder for testing the LKA's behavior.
 
 
 
 
 
-The same commands are present within the 'tesi LKA' folder for testing the LKA's behavior.
+
 
 
 
