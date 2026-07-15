@@ -28,7 +28,7 @@ assignin('base','PredictionHorizon',30);                % Prediction horizon
 defaultScenarioFcnName = scenario_name;
 
 validScenarioFcnNames = {
-    'curvaLunga',...                                    % scenarioId = 1
+    'LongTurn',...                                      % scenarioId = 1
     'LFACC_04_Curve_CutInOut',...                       % scenarioId = 2
     'LFACC_02_DoubleCurve_AutoRetarget',...             % scenarioId = 3
     'A4_Bergamo',...                                    % scenarioId = 4
@@ -37,7 +37,7 @@ validScenarioFcnNames = {
     'LFACC_01_DoubleCurve_DecelTarget',...              % scenarioId = 7
     'ACC_02_ISO_AutoRetargetTest',...                   % scenarioId = 8
     'Highway_double_target',...                         % scenarioId = 9
-    'FrenataBrusca',...                                 % scenarioId = 10
+    'SuddenBraking',...                                 % scenarioId = 10
     'A15_LaSpezia_Parma',...                            % scenarioId = 11
     'A26_Autostrada_Trafori',...                        % scenarioId = 12
     'Pacific_Coast_Highway',...                         % scenarioId = 13
