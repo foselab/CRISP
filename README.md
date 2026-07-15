@@ -8,8 +8,8 @@ This repository contains 4 folders:
 
 * `LaneFollowingControlWithSensorFusionAndLaneDetectionACC`: it contains the simulink model used to test the ACC controller
 * `LaneFollowingControlWithSensorFusionAndLaneDetectionLKA`: it contains the simulink model used to test the LKA controller
-* `Statistical tests`: it contains the scripts to run the statistical tests and generate the results of RQ1
-* `Failure analisys`: it contains the scripts to run the failure analysis and generate the results of RQ2
+* `Results/Statistical tests`: it contains the scripts to run the statistical tests and generate the results of RQ1
+* `Results/Failure analisys`: it contains the scripts to run the failure analysis and generate the results of RQ2
 
 ## Requirements
 
@@ -68,15 +68,15 @@ Here is an example example of how to introduce an over-the-air update:
 Run_by_fitness;
 ```
 
+## Experiment results
+
+Here, we describe how the experiment results are organized and how to run the scripts to generate the results of the two research questions of our paper.
+
+### Statistical Tests
 
 
 
-
-### Results RQ1
-
-
-
-The folder RQ1 - statistical tests contains the results of the prioritization  technique. Before running all the test be sure to load the data of the simulation perfomed by running the command: load\_data\_CRISP\_approach;load\_data\_APDISC\_approach; load\_data\_random\_approach;
+The folder `Statistical tests` contains the results of the prioritization  technique. Before running all the test be sure to load the data of the simulation perfomed by running the command: load\_data\_CRISP\_approach;load\_data\_APDISC\_approach; load\_data\_random\_approach;
 
 
 
