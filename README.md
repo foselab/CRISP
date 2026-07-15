@@ -6,10 +6,10 @@ This repository contains the necessary files to replicate the analysis exposed i
 
 This repository contains 4 folders:
 
-* LaneFollowingControlWithSensorFusionAndLaneDetectionACC: it contains the simulink model used to test the ACC controller
-* LaneFollowingControlWithSensorFusionAndLaneDetectionLKA: it contains the simulink model used to test the LKA controller
-* RQ1 - statistical tests
-* RQ2 - failure analisys
+* `LaneFollowingControlWithSensorFusionAndLaneDetectionACC`: it contains the simulink model used to test the ACC controller
+* `LaneFollowingControlWithSensorFusionAndLaneDetectionLKA`: it contains the simulink model used to test the LKA controller
+* `Statistical tests`: it contains the scripts to run the statistical tests and generate the results of RQ1
+* `Failure analisys`: it contains the scripts to run the failure analysis and generate the results of RQ2
 
 
 
