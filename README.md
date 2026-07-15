@@ -76,7 +76,10 @@ Here, we describe how the experiment results are organized and how to run the sc
 
 
 
-The folder `Statistical tests` contains the results of the prioritization  technique. Before running all the test be sure to load the data of the simulation perfomed by running the command: load\_data\_CRISP\_approach;load\_data\_APDISC\_approach; load\_data\_random\_approach;
+The folder `Statistical tests` contains the results of the prioritization technique and of the comparison with *random* and *AP-Disc*. 
+
+> [!NOTE]
+> Before running all the test be sure to load the data of the simulation perfomed by running the command: `load_data_CRISP_approach;load_data_APDISC_approach; load_data_random_approach;`
 
 
 
