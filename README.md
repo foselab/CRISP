@@ -74,8 +74,6 @@ Here, we describe how the experiment results are organized and how to run the sc
 
 ### Statistical Tests
 
-
-
 The folder `Statistical tests` contains the results of the prioritization technique and of the comparison with *random* and *AP-Disc*. 
 
 > [!NOTE]
@@ -102,34 +100,27 @@ Box_plot;
 ```
 
 
-### Results RQ2
+### Failure analysis
 
+The folder `Failure analysis` contains the results of the selection technique.
 
+To analyze the results obtained, it is necessary to run the command: 
+```
+delta_variation_graph;
+``` 
 
-the folder RQ2 - contains the results of the selection technique.
-
-
-
-To analyze the results obtained, it is necessary to run the command: delta\_variation\_graph; It generates the graph with the total time saved and the percentage of failure revealing test cases identified
-
-
-
-
+This command generates the graph with the total time saved and the percentage of failure revealing test cases identified.
 
 ### Contributors
 
+The following authors contributed to the paper *Safety Analysis of Over-the-air updates for CPS: An Approach For Test Case Prioritization and Selection*:
 
 
-the following authors contributed to the *Safety Analysis of Over-the-air updates for CPS: An Approach For Test Case Prioritization and Selection:*
-
-
-
-* *Andrea Bombarda*
-* *Luca Carminati*
-* *Nunzio Marco Bisceglia*
-* *Mehrnoosh Askarpour*
-* *Sahar Kokaly*
-* *Ramesh S*
-* *Marsha Chechik*
-* *Claudio Menghi*
-
+* *Andrea Bombarda*, University of Bergamo, Bergamo, Italy
+* *Luca Carminati*, University of Bergamo, Bergamo, Italy
+* *Nunzio Marco Bisceglia*, Gran Sasso Science Institute, L'Aquila, Italy
+* *Mehrnoosh Askarpour*, General Motors Canada and McMaster University, Hamilton, Canada
+* *Sahar Kokaly*, General Motors Canada and McMaster University, Hamilton, Canada
+* *Ramesh S*, General Motors, Warren, Michigan, USA -
+* *Marsha Chechik*, University of Toronto, Toronto, Canada
+* *Claudio Menghi*, University of Bergamo, Bergamo, Italy and McMaster University, Hamilton, Canada
