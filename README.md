@@ -1,15 +1,13 @@
-This repository contains the necessary files to replicate the analysis exposed in the papaer *Safety Analysis of Over-the-air Updates for CPS: An Approach for test case prioritizazion and Selection.*
+# Safety Analysis of Over-the-air Updates for CPS: An Approach for test case prioritizazion and Selection
 
+This repository contains the necessary files to replicate the analysis exposed in the papaer *Safety Analysis of Over-the-air Updates for CPS: An Approach for test case prioritizazion and Selection*.
 
+### Repository Structure
 
-### Repository folders
+This repository contains 4 folders:
 
-
-
-this repository contains 4 folders:
-
-* LaneFollowingControlWithSensorFusionAndLaneDetectionExample: it contains the simulink model used to test the ACC controller
-* tesi LKA: it contains the simulink model used to test the LKA controller
+* LaneFollowingControlWithSensorFusionAndLaneDetectionACC: it contains the simulink model used to test the ACC controller
+* LaneFollowingControlWithSensorFusionAndLaneDetectionLKA: it contains the simulink model used to test the LKA controller
 * RQ1 - statistical tests
 * RQ2 - failure analisys
 
