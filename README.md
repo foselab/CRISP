@@ -111,7 +111,7 @@ delta_variation_graph;
 
 This command generates the graph with the total time saved and the percentage of failure revealing test cases identified.
 
-### Contributors
+## Contributors
 
 The following authors contributed to the paper *Safety Analysis of Over-the-air updates for CPS: An Approach For Test Case Prioritization and Selection*:
 
