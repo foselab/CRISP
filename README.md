@@ -121,6 +121,6 @@ The following authors contributed to the paper *Safety Analysis of Over-the-air 
 * *Nunzio Marco Bisceglia*, Gran Sasso Science Institute, L'Aquila, Italy
 * *Mehrnoosh Askarpour*, General Motors Canada and McMaster University, Hamilton, Canada
 * *Sahar Kokaly*, General Motors Canada and McMaster University, Hamilton, Canada
-* *Ramesh S*, General Motors, Warren, Michigan, USA -
+* *Ramesh S*, General Motors, Warren, Michigan, USA
 * *Marsha Chechik*, University of Toronto, Toronto, Canada
 * *Claudio Menghi*, University of Bergamo, Bergamo, Italy and McMaster University, Hamilton, Canada
