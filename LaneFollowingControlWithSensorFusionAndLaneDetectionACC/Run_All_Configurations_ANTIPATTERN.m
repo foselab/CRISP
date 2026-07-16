@@ -67,22 +67,22 @@ for i = 1 : length_vehicles_array
     for j = 1 : length_scenarios_array       
         scenario_id = j;
         %simulation configuration
-        fprintf('CONFIGURAZIONE SIMULAZIONE\n');
+        fprintf('CONFIGURING SIMULATION\n');
         helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_Array_validi{j}, scenario_id);
-        fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
+        fprintf('SIMULATION CONFIGURATION SUCCESSFUL\n');
 
         %fitness function hecate configuration
-        fprintf('CONFIGURAZIONE HECATE\n'); 
+        fprintf('CONFIGURING HECATE\n'); 
         run("hecate\testComandi.m");                        
-        fprintf('HECATE CORRETTAMENTE CONFIGURATO\n');
+        fprintf('HECATE CONFIGURATION SUCCESSFUL\n');
 
         %run simulation
         fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_Array_validi{j}, Vehicles_Parameters{i});
         [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
-        fprintf('SIMULAZIONE CONCLUSA \n');
+        fprintf('SIMULATION COMPLETE \n');
 
         %saving data
-        fprintf('SALVATAGGIO DATI\n');
+        fprintf('SAVING DATA\n');
         Actual_Scenario_Name = Scenario_Array_validi{j};    
         Actual_Vehicle_Name = Vehicles_Parameters{i};
         fit_values = Out.logsout{6}.Values.Data; 

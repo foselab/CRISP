@@ -74,12 +74,12 @@ Results_Table_by_APDISC = table('Size', sz, 'VariableTypes',varTypes, 'VariableN
 
 %% START OF SIMULATION
 tic;  % start timer
-numero_casi_fail_trovati = 0; 
+num_failures = 0; 
 
-numero_iterazioni = size(sorted_Table,1); % the number of iterations to be performed must match the number of rows in the reordered table
+num_iterations = size(sorted_Table,1); % the number of iterations to be performed must match the number of rows in the reordered table
 
  
-for i = 1 : numero_iterazioni
+for i = 1 : num_iterations
     Vehicle_file_name = sorted_Table{i,2};  %  vehicle name extraction  
     run(Vehicle_file_name);                 %  run the code of the vehicle 
 
@@ -96,30 +96,30 @@ for i = 1 : numero_iterazioni
         end
     end
 
-    % configurazione simulazione
-    fprintf('CONFIGURAZIONE SIMULAZIONE\n');
+    % CONFIGURING SIMULATION
+    fprintf('CONFIGURING SIMULATION\n');
     helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_file_name, scenario_id);
-    fprintf('SIMULAZIONE CORRETTAMENTE CONFIGURATA\n');
+    fprintf('SIMULATION CONFIGURATION SUCCESSFUL\n');
     
 
     % sim configuration
-    fprintf('CONFIGURAZIONE HECATE\n'); 
+    fprintf('CONFIGURING HECATE\n'); 
     run("hecate\testComandi.m");                        
-    fprintf('HECATE CORRETTAMENTE CONFIGURATO\n');
+    fprintf('HECATE CONFIGURATION SUCCESSFUL\n');
 
     % run simulation
     fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_file_name, Vehicle_file_name);
     [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
-    fprintf('SIMULAZIONE CONCLUSA \n');
+    fprintf('SIMULATION COMPLETE \n');
 
         
     %saving data
-    fprintf('SALVATAGGIO DATI\n');
+    fprintf('SAVING DATA\n');
     fit_values = Out.logsout{6}.Values.Data;
     fitness_simulation = fit_values(end);
 
     if(fitness_simulation<0)
-        numero_casi_fail_trovati = numero_casi_fail_trovati+1; 
+        num_failures = num_failures+1; 
     end
      
     Collision_values = Out.logsout{1}.Values.Data;
@@ -139,42 +139,42 @@ tempo_trascorso = toc;  % STOP TIMER
 %% "TOTAL_FAULT_FOUND" column addition
 
 total_fault_col = NaN(height(Results_Table_by_APDISC), 1);
-total_fault_col(1) = numero_casi_fail_trovati;
+total_fault_col(1) = num_failures;
 Results_Table_by_APDISC.Total_Fault_Found = total_fault_col;
 
 %% SAVING DATA 
 
 writetable(Results_Table_by_APDISC, 'tabellarisultati_LKA_CONF3_APDISC.xlsx');
 
-fprintf('Numero fault trovati in 91 simulazioni: %d\n', numero_casi_fail_trovati);
+fprintf('Numero fault trovati in 91 simulazioni: %d\n', num_failures);
 
 %% CREATION OF THE GRAPH
 
 T = readtable('tabellarisultati_LKA_CONF3_APDISC.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
-vettore_failure_binario = zeros(1,length(vettore_failure));
+binary_failure_vector = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
     if(vettore_failure(i)<0)
-        vettore_failure_binario(i)=1;
+        binary_failure_vector(i)=1;
     end
 end
 
-vettore_failure_binario = cumsum(vettore_failure_binario);
+binary_failure_vector = cumsum(binary_failure_vector);
 
-asse_x = 1:length(vettore_failure_binario);
+asse_x = 1:length(binary_failure_vector);
 
 figure; 
-p=plot(asse_x,vettore_failure_binario);
+p=plot(asse_x,binary_failure_vector);
 p.LineWidth=2;
 p.Marker="o";
 
-yticks(0:1:max(vettore_failure_binario));
+yticks(0:1:max(binary_failure_vector));
 
 xlabel('Simulazioni');
 ylabel('Failure');
 title('Grafico performance APDISC');
 grid on;
-filename = fullfile('C:\Users\Luca\Desktop\tesi LKA\grafici\OTA3','grafico_APDISC_CONF3.fig');
+filename = fullfile('C:\Users\Luca\Desktop\LaneFollowingControlWithSensorFusionAndLaneDetectionLKA\grafici\OTA3','grafico_APDISC_CONF3.fig');
 savefig(filename);
 
 

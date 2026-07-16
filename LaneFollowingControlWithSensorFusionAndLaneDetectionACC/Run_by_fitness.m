@@ -76,12 +76,12 @@ Results_Table_by_Fitness = table('Size', sz, 'VariableTypes',varTypes, 'Variable
 
 %% START OF SIMULATION 
 tic;  % start of timer
-numero_casi_fail_trovati = 0; 
+num_failures = 0; 
 
-numero_iterazioni = size(sorted_Table,1); % the number of iterations to be performed must match the number of rows in the reordered table
+num_iterations = size(sorted_Table,1); % the number of iterations to be performed must match the number of rows in the reordered table
 
  
-for i = 1 : numero_iterazioni
+for i = 1 : num_iterations
     Vehicle_file_name = sorted_Table{i,2};  % vehicle name extraction 
     run(Vehicle_file_name);                 % run the code of the vehicle 
     
@@ -120,7 +120,7 @@ for i = 1 : numero_iterazioni
     fitness_simulation = fit_values(end);
 
     if(fitness_simulation<0)
-        numero_casi_fail_trovati = numero_casi_fail_trovati+1; 
+        num_failures = num_failures+1; 
     end
      
     Collision_values = Out.logsout{1}.Values.Data;
@@ -135,42 +135,42 @@ tempo_trascorso = toc;  % stop timer
 %% "TOTAL_FAULT_FOUND" column addition
 
 total_fault_col = NaN(height(Results_Table_by_Fitness), 1);
-total_fault_col(1) = numero_casi_fail_trovati;
+total_fault_col(1) = num_failures;
 Results_Table_by_Fitness.Total_Fault_Found = total_fault_col;
 
 %% SAVING DATA 
 
 writetable(Results_Table_by_Fitness, 'tabellarisultatiHecate_CONF1_finale.xlsx');
 
-fprintf('Number of faults detected in 133 simulations: %d\n', numero_casi_fail_trovati);
+fprintf('Number of faults detected in 133 simulations: %d\n', num_failures);
 
 %% CREATION OF THE GRAPH
 
 T = readtable('tabellarisultati_HECATE_CONF_2.xlsx');
 vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
-vettore_failure_binario = zeros(1,length(vettore_failure));
+binary_failure_vector = zeros(1,length(vettore_failure));
 for i=1:length(vettore_failure)
     if(vettore_failure(i)<0)
-        vettore_failure_binario(i)=1;
+        binary_failure_vector(i)=1;
     end
 end
 
-vettore_failure_binario = cumsum(vettore_failure_binario);
+binary_failure_vector = cumsum(binary_failure_vector);
 
-asse_x = 1:length(vettore_failure_binario);
+asse_x = 1:length(binary_failure_vector);
 
 figure; 
-p=plot(asse_x,vettore_failure_binario);
+p=plot(asse_x,binary_failure_vector);
 p.LineWidth=2;
 p.Marker="o";
 
-yticks(0:1:max(vettore_failure_binario));
+yticks(0:1:max(binary_failure_vector));
 
 xlabel('Simulazioni');
 ylabel('Failure');
 title('Grafico performance HECATE');
 grid on;
-filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionExample\grafici','grafico_hecate_CONF2.fig');
+filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionACC\grafici','grafico_hecate_CONF2.fig');
 savefig(filename);
 
 

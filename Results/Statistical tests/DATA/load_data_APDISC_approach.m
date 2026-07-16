@@ -5,16 +5,16 @@ vettore_fitness_APDISC_ACC_OTA_1 = double(T_fitness{1:end, 3});
 
 position_vector_APDISC_ACC_OTA_1 = [];
 
-vettore_failure_binario_APDISC_ACC_OTA_1 = zeros(1,length(vettore_fitness_APDISC_ACC_OTA_1));
+binary_failure_vector_APDISC_ACC_OTA_1 = zeros(1,length(vettore_fitness_APDISC_ACC_OTA_1));
 for i=1:length(vettore_fitness_APDISC_ACC_OTA_1)
     if(vettore_fitness_APDISC_ACC_OTA_1(i)<0)
-        vettore_failure_binario_APDISC_ACC_OTA_1(i)=1;
+        binary_failure_vector_APDISC_ACC_OTA_1(i)=1;
     end
 end
 
-for i = 1 : length(vettore_failure_binario_APDISC_ACC_OTA_1)
+for i = 1 : length(binary_failure_vector_APDISC_ACC_OTA_1)
     j=0;
-    if(vettore_failure_binario_APDISC_ACC_OTA_1(i)==1)
+    if(binary_failure_vector_APDISC_ACC_OTA_1(i)==1)
         position_vector_APDISC_ACC_OTA_1 = [position_vector_APDISC_ACC_OTA_1, i];
         j=j+1;
     end
@@ -26,16 +26,16 @@ vettore_fitness_APDISC_ACC_OTA_2 = double(T_fitness{1:end, 3});
 
 position_vector_APDISC_ACC_OTA_2 = [];
 
-vettore_failure_binario_APDISC_ACC_OTA_2 = zeros(1,length(vettore_fitness_APDISC_ACC_OTA_2));
+binary_failure_vector_APDISC_ACC_OTA_2 = zeros(1,length(vettore_fitness_APDISC_ACC_OTA_2));
 for i=1:length(vettore_fitness_APDISC_ACC_OTA_2)
     if(vettore_fitness_APDISC_ACC_OTA_2(i)<0)
-        vettore_failure_binario_APDISC_ACC_OTA_2(i)=1;
+        binary_failure_vector_APDISC_ACC_OTA_2(i)=1;
     end
 end
 
-for i = 1 : length(vettore_failure_binario_APDISC_ACC_OTA_2)
+for i = 1 : length(binary_failure_vector_APDISC_ACC_OTA_2)
     j=0;
-    if(vettore_failure_binario_APDISC_ACC_OTA_2(i)==1)
+    if(binary_failure_vector_APDISC_ACC_OTA_2(i)==1)
         position_vector_APDISC_ACC_OTA_2 = [position_vector_APDISC_ACC_OTA_2, i];
         j=j+1;
     end
@@ -48,16 +48,16 @@ vettore_fitness_APDISC_LKA_OTA_1 = double(T_fitness{1:end, 3});
 
 position_vector_APDISC_LKA_OTA_1 = [];
 
-vettore_failure_binario_APDISC_LKA_OTA_1 = zeros(1,length(vettore_fitness_APDISC_LKA_OTA_1));
+binary_failure_vector_APDISC_LKA_OTA_1 = zeros(1,length(vettore_fitness_APDISC_LKA_OTA_1));
 for i=1:length(vettore_fitness_APDISC_LKA_OTA_1)
     if(vettore_fitness_APDISC_LKA_OTA_1(i)<0)
-        vettore_failure_binario_APDISC_LKA_OTA_1(i)=1;
+        binary_failure_vector_APDISC_LKA_OTA_1(i)=1;
     end
 end
 
-for i = 1 : length(vettore_failure_binario_APDISC_LKA_OTA_1)
+for i = 1 : length(binary_failure_vector_APDISC_LKA_OTA_1)
     j=0;
-    if(vettore_failure_binario_APDISC_LKA_OTA_1(i)==1)
+    if(binary_failure_vector_APDISC_LKA_OTA_1(i)==1)
         position_vector_APDISC_LKA_OTA_1 = [position_vector_APDISC_LKA_OTA_1, i];
         j=j+1;
     end
@@ -69,16 +69,16 @@ vettore_fitness_APDISC_LKA_OTA_2 = double(T_fitness{1:end, 3});
 
 position_vector_APDISC_LKA_OTA_2 = [];
 
-vettore_failure_binario_APDISC_LKA_OTA_2 = zeros(1,length(vettore_fitness_APDISC_LKA_OTA_2));
+binary_failure_vector_APDISC_LKA_OTA_2 = zeros(1,length(vettore_fitness_APDISC_LKA_OTA_2));
 for i=1:length(vettore_fitness_APDISC_LKA_OTA_2)
     if(vettore_fitness_APDISC_LKA_OTA_2(i)<0)
-        vettore_failure_binario_APDISC_LKA_OTA_2(i)=1;
+        binary_failure_vector_APDISC_LKA_OTA_2(i)=1;
     end
 end
 
-for i = 1 : length(vettore_failure_binario_APDISC_LKA_OTA_2)
+for i = 1 : length(binary_failure_vector_APDISC_LKA_OTA_2)
     j=0;
-    if(vettore_failure_binario_APDISC_LKA_OTA_2(i)==1)
+    if(binary_failure_vector_APDISC_LKA_OTA_2(i)==1)
         position_vector_APDISC_LKA_OTA_2 = [position_vector_APDISC_LKA_OTA_2, i];
         j=j+1;
     end
@@ -90,16 +90,16 @@ vettore_fitness_APDISC_LKA_OTA_3 = double(T_fitness{1:end, 3});
 
 position_vector_APDISC_LKA_OTA_3 = [];
 
-vettore_failure_binario_APDISC_LKA_OTA_3 = zeros(1,length(vettore_fitness_APDISC_LKA_OTA_3));
+binary_failure_vector_APDISC_LKA_OTA_3 = zeros(1,length(vettore_fitness_APDISC_LKA_OTA_3));
 for i=1:length(vettore_fitness_APDISC_LKA_OTA_3)
     if(vettore_fitness_APDISC_LKA_OTA_3(i)<0)
-        vettore_failure_binario_APDISC_LKA_OTA_3(i)=1;
+        binary_failure_vector_APDISC_LKA_OTA_3(i)=1;
     end
 end
 
-for i = 1 : length(vettore_failure_binario_APDISC_LKA_OTA_3)
+for i = 1 : length(binary_failure_vector_APDISC_LKA_OTA_3)
     j=0;
-    if(vettore_failure_binario_APDISC_LKA_OTA_3(i)==1)
+    if(binary_failure_vector_APDISC_LKA_OTA_3(i)==1)
         position_vector_APDISC_LKA_OTA_3 = [position_vector_APDISC_LKA_OTA_3, i];
         j=j+1;
     end

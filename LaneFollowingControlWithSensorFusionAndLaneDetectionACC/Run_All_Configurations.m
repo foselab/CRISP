@@ -80,7 +80,7 @@ for i = 1 : length_vehicles_array
         %run simulation
         fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_Array_validi{j}, Vehicles_Parameters{i});
         [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
-        fprintf('SIMULAZIONE CONCLUSA \n');
+        fprintf('SIMULATION COMPLETE \n');
 
         %saving data
         fprintf('SAVE DATA\n');
