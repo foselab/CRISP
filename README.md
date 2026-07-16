@@ -22,6 +22,7 @@ To run the script and be able to open the Simulink models, ensure the following 
     - Embedded Coder
     - Model Predictive Control Toolbox
     - Simulink 3D Animation
+    - Image Processing Toolbox
 
 * HECATE (follow the intructions written in the [tool repo](https://github.com/Hecate-SBST/Hecate/tree/main))
 
