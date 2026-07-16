@@ -21,8 +21,11 @@ To run the script and be able to open the Simulink models, ensure the following 
     - Automated Driving Toolbox
     - Embedded Coder
     - Model Predictive Control Toolbox
-    - Simulink 3D Animation
+    - Simulink 3D Animation (Not supported for MacOS)
     - Image Processing Toolbox
+    - Computer Vision Toolbox
+    - MATLAB Coder
+    - Control System Toolbox
 
 * HECATE (follow the intructions written in the [tool repo](https://github.com/Hecate-SBST/Hecate/tree/main))
 
