@@ -4,7 +4,7 @@
 %% In each section, the reference table is taken and the fitness values are extracted. In this way, a vector is constructed containing, 
 %% in sequence, the positions where the faults are found within the simulations
 T1 = readtable('tabellarisultati_RANDOM1_CONF_2.xlsx');
-vettore_fitness_RANDOM_1 = double(T1{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
+vettore_fitness_RANDOM_1 = double(T1{1:end, 3}); % Extract the collision column, excluding the header row
 
 position_vector_RANDOM_1 = [];
 
@@ -26,7 +26,7 @@ end
 %% table random 2
 
 T2 = readtable('tabellarisultati_RANDOM2_CONF_2.xlsx');
-vettore_fitness_RANDOM_2 = double(T2{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
+vettore_fitness_RANDOM_2 = double(T2{1:end, 3}); % Extract the collision column, excluding the header row
 
 position_vector_RANDOM_2 = [];
 
@@ -48,7 +48,7 @@ end
 %% table random 3
 
 T3 = readtable('tabellarisultati_RANDOM3_CONF_2.xlsx');
-vettore_fitness_RANDOM_3 = double(T3{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
+vettore_fitness_RANDOM_3 = double(T3{1:end, 3}); % Extract the collision column, excluding the header row
 
 position_vector_RANDOM_3 = [];
 
@@ -70,7 +70,7 @@ end
 %% table random 4
 
 T4 = readtable('tabellarisultati_RANDOM4_CONF_2.xlsx');
-vettore_fitness_RANDOM_4 = double(T4{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
+vettore_fitness_RANDOM_4 = double(T4{1:end, 3}); % Extract the collision column, excluding the header row
 
 position_vector_RANDOM_4 = [];
 
@@ -92,7 +92,7 @@ end
 %% table random 5
 
 T5 = readtable('tabellarisultati_RANDOM5_CONF_2.xlsx');
-vettore_fitness_RANDOM_5 = double(T5{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
+vettore_fitness_RANDOM_5 = double(T5{1:end, 3}); % Extract the collision column, excluding the header row
 
 position_vector_RANDOM_5 = [];
 

@@ -40,6 +40,6 @@ fprintf('DATA SAVED\n');
 fprintf('FITNESS OBTAINED: %d\n', fitness_simulation);
 fprintf('DISCONTINUITY OBTAINED: %d\n', discontinuityMaxValue);
 
-tempo_trascorso = toc;  % stop timer
-disp(['TIME REQUIRED: ', num2str(tempo_trascorso), ' secondS']);
+elapsed_time = toc;  % stop timer
+disp(['TIME REQUIRED: ', num2str(elapsed_time), ' secondS']);
 fprintf("Collision?: %d\n", Collision);

@@ -36,6 +36,6 @@ fprintf('DATA SAVED\n');
 %print simulation result on screen
 fprintf('FITNESS OBTAINES: %d\n', fitness_simulation);
 
-tempo_trascorso = toc;  % stop timer
-disp(['Time required: ', num2str(tempo_trascorso), ' seconds']);
+elapsed_time = toc;  % stop timer
+disp(['Time required: ', num2str(elapsed_time), ' seconds']);
 fprintf("Collision?: %d\n", Collision);

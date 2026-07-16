@@ -23,7 +23,7 @@ random_order_2 = randperm(91);
 random_order_3 = randperm(91);
 random_order_4 = randperm(91);
 random_order_5 = randperm(91);
-matrice_rand = [random_order_1;random_order_2;random_order_3;random_order_4;random_order_5];
+random_matrix = [random_order_1;random_order_2;random_order_3;random_order_4;random_order_5];
 
 rng(s);
 
@@ -46,7 +46,7 @@ length_vehicles_array = length(Vehicles_Parameters);
 
 %% LIST OF AVAILABLE SCENARIOS (organized in a cell vector)
 
-  Scenario_Array_validi = {
+  Valid_Scenario_Array = {
     'LFACC_01_DoubleCurve_DecelTarget',...              % scenarioId = 1
     'LFACC_02_DoubleCurve_AutoRetarget',...             % scenarioId = 2
     'LFACC_03_DoubleCurve_StopnGo',...                  % scenarioId = 3
@@ -63,7 +63,7 @@ length_vehicles_array = length(Vehicles_Parameters);
     
         };
 
-length_scenarios_array = length(Scenario_Array_validi);         
+length_scenarios_array = length(Valid_Scenario_Array);         
 
 
 
@@ -85,7 +85,7 @@ for column = 1 : 5
     Results_Table_by_Random = table('Size', sz, 'VariableTypes',varTypes, 'VariableNames',varNames);
 
     for i = 1 : num_iterations
-        number = matrice_rand(column,i);
+        number = random_matrix(column,i);
         Vehicle_file_name = data{number,2};  % vehicle name extraction  
         run(Vehicle_file_name);              % run the code of the vehicle 
         
@@ -96,7 +96,7 @@ for column = 1 : 5
         
         % scenario id extraction 
         for j=1 : length_scenarios_array
-            if(strcmp(Scenario_Array_validi{j},Scenario_file_name))
+            if(strcmp(Valid_Scenario_Array{j},Scenario_file_name))
                 scenario_id = j;
                 break;
             end
@@ -145,32 +145,32 @@ for column = 1 : 5
     writetable(Results_Table_by_Random, filename);
 end
 
-tempo_trascorso = toc;  % stop timer
+elapsed_time = toc;  % stop timer
 
 %% CREATION OF THE GRAPHS 
 
 % GRAPH 1
 T = readtable('tabellarisultati_LKA_CONF_3_RANDOM_1.xlsx');
-vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
-binary_failure_vector = zeros(1,length(vettore_failure));
-for i=1:length(vettore_failure)
-    if(vettore_failure(i)<0)
+failure_vector = double(T{1:end, 3}); % Extract the collision column, excluding the header row
+binary_failure_vector = zeros(1,length(failure_vector));
+for i=1:length(failure_vector)
+    if(failure_vector(i)<0)
         binary_failure_vector(i)=1;
     end
 end
 
 binary_failure_vector = cumsum(binary_failure_vector);
 
-asse_x = 1:length(binary_failure_vector);
+x_axis = 1:length(binary_failure_vector);
 
 figure; 
-p=plot(asse_x,binary_failure_vector);
+p=plot(x_axis,binary_failure_vector);
 p.LineWidth=2;
 p.Marker="o";
 
 yticks(0:1:max(binary_failure_vector));
 
-xlabel('Simulazioni');
+xlabel('Simulations');
 ylabel('Failure');
 title('Grafico performance RANDOM1');
 grid on;
@@ -179,26 +179,26 @@ savefig(filename);
 
 % GRAPH 2
 T = readtable('tabellarisultati_LKA_CONF_3_RANDOM_2.xlsx');
-vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
-binary_failure_vector = zeros(1,length(vettore_failure));
-for i=1:length(vettore_failure)
-    if(vettore_failure(i)<0)
+failure_vector = double(T{1:end, 3}); % Extract the collision column, excluding the header row
+binary_failure_vector = zeros(1,length(failure_vector));
+for i=1:length(failure_vector)
+    if(failure_vector(i)<0)
         binary_failure_vector(i)=1;
     end
 end
 
 binary_failure_vector = cumsum(binary_failure_vector);
 
-asse_x = 1:length(binary_failure_vector);
+x_axis = 1:length(binary_failure_vector);
 
 figure; 
-p=plot(asse_x,binary_failure_vector);
+p=plot(x_axis,binary_failure_vector);
 p.LineWidth=2;
 p.Marker="o";
 
 yticks(0:1:max(binary_failure_vector));
 
-xlabel('Simulazioni');
+xlabel('Simulations');
 ylabel('Failure');
 title('Grafico performance RANDOM2');
 grid on;
@@ -207,26 +207,26 @@ savefig(filename);
 
 % GRAPH 3
 T = readtable('tabellarisultati_LKA_CONF_3_RANDOM_3.xlsx');
-vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
-binary_failure_vector = zeros(1,length(vettore_failure));
-for i=1:length(vettore_failure)
-    if(vettore_failure(i)<0)
+failure_vector = double(T{1:end, 3}); % Extract the collision column, excluding the header row
+binary_failure_vector = zeros(1,length(failure_vector));
+for i=1:length(failure_vector)
+    if(failure_vector(i)<0)
         binary_failure_vector(i)=1;
     end
 end
 
 binary_failure_vector = cumsum(binary_failure_vector);
 
-asse_x = 1:length(binary_failure_vector);
+x_axis = 1:length(binary_failure_vector);
 
 figure; 
-p=plot(asse_x,binary_failure_vector);
+p=plot(x_axis,binary_failure_vector);
 p.LineWidth=2;
 p.Marker="o";
 
 yticks(0:1:max(binary_failure_vector));
 
-xlabel('Simulazioni');
+xlabel('Simulations');
 ylabel('Failure');
 title('Grafico performance RANDOM3');
 grid on;
@@ -235,26 +235,26 @@ savefig(filename);
 
 % GRAPH 4
 T = readtable('tabellarisultati_LKA_CONF_3_RANDOM_4.xlsx');
-vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
-binary_failure_vector = zeros(1,length(vettore_failure));
-for i=1:length(vettore_failure)
-    if(vettore_failure(i)<0)
+failure_vector = double(T{1:end, 3}); % Extract the collision column, excluding the header row
+binary_failure_vector = zeros(1,length(failure_vector));
+for i=1:length(failure_vector)
+    if(failure_vector(i)<0)
         binary_failure_vector(i)=1;
     end
 end
 
 binary_failure_vector = cumsum(binary_failure_vector);
 
-asse_x = 1:length(binary_failure_vector);
+x_axis = 1:length(binary_failure_vector);
 
 figure; 
-p=plot(asse_x,binary_failure_vector);
+p=plot(x_axis,binary_failure_vector);
 p.LineWidth=2;
 p.Marker="o";
 
 yticks(0:1:max(binary_failure_vector));
 
-xlabel('Simulazioni');
+xlabel('Simulations');
 ylabel('Failure');
 title('Grafico performance RANDOM4');
 grid on;
@@ -263,26 +263,26 @@ savefig(filename);
 
 % GRAPH 5
 T = readtable('tabellarisultati_LKA_CONF_3_RANDOM_5.xlsx');
-vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
-binary_failure_vector = zeros(1,length(vettore_failure));
-for i=1:length(vettore_failure)
-    if(vettore_failure(i)<0)
+failure_vector = double(T{1:end, 3}); % Extract the collision column, excluding the header row
+binary_failure_vector = zeros(1,length(failure_vector));
+for i=1:length(failure_vector)
+    if(failure_vector(i)<0)
         binary_failure_vector(i)=1;
     end
 end
 
 binary_failure_vector = cumsum(binary_failure_vector);
 
-asse_x = 1:length(binary_failure_vector);
+x_axis = 1:length(binary_failure_vector);
 
 figure; 
-p=plot(asse_x,binary_failure_vector);
+p=plot(x_axis,binary_failure_vector);
 p.LineWidth=2;
 p.Marker="o";
 
 yticks(0:1:max(binary_failure_vector));
 
-xlabel('Simulazioni');
+xlabel('Simulations');
 ylabel('Failure');
 title('Grafico performance RANDOM5');
 grid on;

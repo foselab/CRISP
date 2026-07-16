@@ -21,7 +21,7 @@ length_vehicles_array = length(Vehicles_Parameters);
 
 %% LIST OF AVAILABLE SCENARIOS (organized in a cell vector)
 
-  Scenario_Array_validi = {
+  Valid_Scenario_Array = {
     'LongTurn',...                                    % scenarioId = 1
     'LFACC_04_Curve_CutInOut',...                       % scenarioId = 2
     'LFACC_02_DoubleCurve_AutoRetarget',...             % scenarioId = 3
@@ -44,7 +44,7 @@ length_vehicles_array = length(Vehicles_Parameters);
     
         };
 
-length_scenarios_array = length(Scenario_Array_validi);         
+length_scenarios_array = length(Valid_Scenario_Array);         
 
 %% CREATION OF A EMPTY TABLE, CONFIGURED TO CONTAIN THE VALUES OF EACH CONFIGURATION    
 rows = length_scenarios_array * length_vehicles_array;
@@ -69,7 +69,7 @@ for i = 1 : length_vehicles_array
         scenario_id = j;
         %simulation configuration
         fprintf('CONFIGURATION SIM\n');
-        helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Scenario_Array_validi{j}, scenario_id);
+        helperLFSetUp(max_acceleration, min_acceleration, max_steering, min_steering, total_mass, yaw, long_distance_front, long_distance_rear, cornering_stiff_front, cornering_stiff_rear, tau, Valid_Scenario_Array{j}, scenario_id);
         fprintf('SIM CONFIGURATED\n');
 
         %fitness function hecate configuration
@@ -78,13 +78,13 @@ for i = 1 : length_vehicles_array
         fprintf('HECATE CONFIGURATEED\n');
 
         %run simulation
-        fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Scenario_Array_validi{j}, Vehicles_Parameters{i});
+        fprintf('START SIMULATION --- Scenario: %s  Vehicle: %s \n', Valid_Scenario_Array{j}, Vehicles_Parameters{i});
         [Out] = sim(modelname_simulation, 'ReturnWorkspaceOutputs', 'on');
         fprintf('SIMULATION COMPLETE \n');
 
         %saving data
         fprintf('SAVE DATA\n');
-        Actual_Scenario_Name = Scenario_Array_validi{j};    
+        Actual_Scenario_Name = Valid_Scenario_Array{j};    
         Actual_Vehicle_Name = Vehicles_Parameters{i};
         fit_values = Out.logsout{6}.Values.Data; 
         fitness_simulation = fit_values(end);
@@ -99,7 +99,7 @@ end
 % SAVING DATA in excel table
 writetable(Results_Table, 'table_ACC_CONF_0.xlsx');
 
-tempo_trascorso = toc;  % stop timer
-disp(['Time required: ', num2str(tempo_trascorso), ' seconds']);
+elapsed_time = toc;  % stop timer
+disp(['Time required: ', num2str(elapsed_time), ' seconds']);
 
 

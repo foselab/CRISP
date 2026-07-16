@@ -41,7 +41,7 @@ length_vehicles_array = length(Vehicles_Parameters);
 
 %% LIST OF AVAILABLE SCENARIOS (organized in a cell vector)
 
-  Scenario_Array_validi = {
+  Valid_Scenario_Array = {
     'LongTurn',...                                    % scenarioId = 1
     'LFACC_04_Curve_CutInOut',...                       % scenarioId = 2
     'LFACC_02_DoubleCurve_AutoRetarget',...             % scenarioId = 3
@@ -64,7 +64,7 @@ length_vehicles_array = length(Vehicles_Parameters);
     
         };
 
-length_scenarios_array = length(Scenario_Array_validi);         
+length_scenarios_array = length(Valid_Scenario_Array);         
 
 %% CREATION OF A EMPTY TABLE, CONFIGURED TO CONTAIN THE VALUES OF EACH CONFIGURATION
 rows = length_scenarios_array * length_vehicles_array;
@@ -92,7 +92,7 @@ for i = 1 : num_iterations
     
     % scenario id extraction 
     for j = 1 : length_scenarios_array
-        if(strcmp(Scenario_Array_validi{j},Scenario_file_name))
+        if(strcmp(Valid_Scenario_Array{j},Scenario_file_name))
             scenario_id = j;
             break;
         end
@@ -136,7 +136,7 @@ for i = 1 : num_iterations
         
 end
 
-tempo_trascorso = toc;  % STOP TIMER
+elapsed_time = toc;  % STOP TIMER
 
 %% "TOTAL_FAULT_FOUND" column addition
 
@@ -148,35 +148,36 @@ Results_Table_by_APDISC.Total_Fault_Found = total_fault_col;
 
 writetable(Results_Table_by_APDISC, 'tabellarisultati_APDISC_CONF3.xlsx');
 
-fprintf('Numero fault trovati in 133 simulazioni: %d\n', num_failures);
+fprintf('Numero fault trovati in 133 Simulations: %d\n', num_failures);
 
 %% CREATION OF THE GRAPH
 
 T = readtable('tabellarisultati_APDISC_CONF3.xlsx');
-vettore_failure = double(T{1:end, 3}); % estraggo la colonna delle collisioni escludendo la prima riga di intestazione
-binary_failure_vector = zeros(1,length(vettore_failure));
-for i=1:length(vettore_failure)
-    if(vettore_failure(i)<0)
+failure_vector = double(T{1:end, 3}); % Extract the collision column, excluding the header row
+binary_failure_vector = zeros(1,length(failure_vector));
+for i=1:length(failure_vector)
+    if(failure_vector(i)<0)
         binary_failure_vector(i)=1;
     end
 end
 
 binary_failure_vector = cumsum(binary_failure_vector);
 
-asse_x = 1:length(binary_failure_vector);
+x_axis = 1:length(binary_failure_vector);
 
 figure; 
-p=plot(asse_x,binary_failure_vector);
+p=plot(x_axis,binary_failure_vector);
 p.LineWidth=2;
 p.Marker="o";
 
 yticks(0:1:max(binary_failure_vector));
 
-xlabel('Simulazioni');
+xlabel('Simulations');
 ylabel('Failure');
-title('Grafico performance APDISC');
+title('AP-DISC Performance');
 grid on;
-filename = fullfile('C:\Users\Luca\Desktop\tesi ACC\carminati\LaneFollowingControlWithSensorFusionAndLaneDetectionACC\grafici','grafico_APDISC_CONF_3.fig');
+filepath = fileparts(mfilename('fullpath'));
+filename = fullfile(filepath, '\plots','grafico_APDISC_CONF_3.fig');
 savefig(filename);
 
 
